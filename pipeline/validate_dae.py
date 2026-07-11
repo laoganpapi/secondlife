@@ -17,6 +17,7 @@ Run: python3 pipeline/validate_dae.py output assets/sl_resources
 
 from __future__ import annotations
 
+import math
 import os
 import re
 import sys
@@ -154,23 +155,29 @@ def validate(path: str, sk, expect_materials: dict[str, list[str]]):
         if unknown:
             err(path, f"unknown joints: {unknown[:5]}")
 
-        # inverse bind matrices: expect pure translation = -world_pos
-        # (volumes carry their rest rotation)
+        # inverse bind matrices: the rig binds in avatar space with an
+        # identity bind_shape_matrix and an axis-aligned rest pose, so
+        # EVERY joint -- mBones AND collision volumes -- must have an
+        # inverse bind of [identity | -world_pos].  (Collada export from
+        # the pivot rig drops the volumes' small XML rest rotations, which
+        # is the standard fitted-mesh convention and deforms correctly in
+        # SL; the earlier code skipped volumes entirely and so could not
+        # catch a mislocated or mis-rotated volume bind.)
+        ident3 = [1, 0, 0, 0, 1, 0, 0, 0, 1]
         for jn, m in zip(joint_names, inv_binds):
             wx, wy, wz = sk.world_pos(jn)
             tx, ty, tz = m[3], m[7], m[11]
-            j = sk.joints[jn]
-            if not j.is_volume:
-                if (abs(tx + wx) > 2e-3 or abs(ty + wy) > 2e-3 or abs(tz + wz) > 2e-3):
-                    err(
-                        path,
-                        f"inv bind of {jn} translation ({tx:.4f},{ty:.4f},{tz:.4f}) "
-                        f"!= -rest pos ({-wx:.4f},{-wy:.4f},{-wz:.4f})",
-                    )
-                rot = [m[0], m[1], m[2], m[4], m[5], m[6], m[8], m[9], m[10]]
-                ident3 = [1, 0, 0, 0, 1, 0, 0, 0, 1]
-                if any(abs(a - b) > 1e-3 for a, b in zip(rot, ident3)):
-                    err(path, f"inv bind of {jn} has rotation (should be identity)")
+            kind = "volume" if sk.joints[jn].is_volume else "bone"
+            if abs(tx + wx) > 2e-3 or abs(ty + wy) > 2e-3 or abs(tz + wz) > 2e-3:
+                err(
+                    path,
+                    f"inv bind of {kind} {jn} translation "
+                    f"({tx:.4f},{ty:.4f},{tz:.4f}) != -rest pos "
+                    f"({-wx:.4f},{-wy:.4f},{-wz:.4f})",
+                )
+            rot = [m[0], m[1], m[2], m[4], m[5], m[6], m[8], m[9], m[10]]
+            if any(abs(a - b) > 3e-3 for a, b in zip(rot, ident3)):
+                err(path, f"inv bind of {kind} {jn} has non-identity rotation")
 
         # weights: <=4 per vertex, normalized
         vw = skin.find("c:vertex_weights", NS)

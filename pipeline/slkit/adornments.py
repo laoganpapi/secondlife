@@ -31,6 +31,18 @@ def _new_obj(name: str, me) -> bpy.types.Object:
     return obj
 
 
+def _clear_groups(obj) -> None:
+    """Remove every vertex group so weights can be reassigned from scratch.
+
+    Meshes cut from the body (shell_from_body) inherit ALL of the body's
+    vertex groups -- including fitted-mesh collision volumes (HEAD, NECK,
+    ...).  Left in place, those give a worn attachment slider/physics
+    response it must not have.  Adornments weight to plain mBones only, so
+    the inherited groups must be cleared first."""
+    for vg in list(obj.vertex_groups):
+        obj.vertex_groups.remove(vg)
+
+
 def _weight_all(obj, weights: dict[str, float]) -> None:
     idx = list(range(len(obj.data.vertices)))
     for bone, w in weights.items():
@@ -251,6 +263,10 @@ def build_hair(body, sk):
     for m in mats:
         me.materials.append(m)
 
+    # the scalp shell inherited the body's groups (mHead, mNeck, HEAD,
+    # NECK, mFaceForehead...); clear them so the mane rigs to mHead only
+    # and never reacts to head-size / appearance sliders
+    _clear_groups(hair)
     _weight_all(hair, {"mHead": 1.0})
     # lower back locks get a touch of neck follow
     vg_head = hair.vertex_groups["mHead"]

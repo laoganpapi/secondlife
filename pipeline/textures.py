@@ -203,17 +203,19 @@ def paint_skin():
         if ch in ("BAKED_HEAD", "BAKED_UPPER", "BAKED_LOWER"):
             channels.setdefault(ch, []).append(slot)
 
-    for mat, slots in channels.items():
+    for ch_i, (mat, slots) in enumerate(channels.items()):
         cov, X, Y, Z, NRM = rasterize(dump, set(slots))
         ao = load_ao(f"{OUT}/bake/ao_GanondorfBody_{mat}.png")
         ao = np.clip(ao, 0.25, 1.0) ** 0.85
 
-        rgb = base_layer(SKIN_BASE, seed=11 + slot, mottle=0.05)
+        # per-channel noise seeds so head/upper/lower get decorrelated
+        # mottle and pore fields (ch_i, not the stale grouping-loop slot)
+        rgb = base_layer(SKIN_BASE, seed=11 + ch_i, mottle=0.05)
         # vertical warm/cool variation
         warm = smooth01((Z - 0.6) / 1.2)
         rgb = rgb * (1 - 0.25 * (1 - warm[..., None])) + SKIN_WARM * 0.10 * warm[..., None]
         # pores / fine noise
-        pores = fbm(SIZE, octaves=7, seed=23 + slot, persistence=0.7)
+        pores = fbm(SIZE, octaves=7, seed=23 + ch_i, persistence=0.7)
         rgb *= 0.96 + 0.08 * pores[..., None]
         # AO shading
         rgb *= ao[..., None]
