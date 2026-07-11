@@ -30,11 +30,11 @@ HEAD_MORPHS = {
     "Big_Brow": 0.9,
     "Lower_Eyebrows": 0.8,
     "Pointy_Eyebrows": 0.4,
-    "Nose_Big_Out": 0.75,
-    "Broad_Nostrils": 0.55,
+    "Nose_Big_Out": 0.55,
+    "Broad_Nostrils": 0.4,
     "Noble_Nose_Bridge": 0.7,
     "Wide_Nose_Bridge": 0.45,
-    "Low_Septum_Nose": 0.3,
+    "Low_Septum_Nose": 0.0,
     "High_Cheek_Bones": 0.55,
     "Sunken_Cheeks": 0.35,
     "Pointy_Ears": 1.0,
@@ -150,4 +150,10 @@ def sculpt_head(obj) -> None:
         # taller cranium
         if z > 1.80:
             co.z += 0.008 * _s((z - 1.80) / 0.06)
+
+        # philtrum tuck: the big-nose morphs leave a flat forward shelf
+        # under the septum -- pull it back toward the lip plane
+        if 1.708 < z < 1.736 and ay < 0.038 and x > 0.126:
+            f = _s(1.0 - abs(z - 1.722) / 0.014) * _s(1.0 - ay / 0.038)
+            co.x -= (x - 0.126) * 0.75 * f
     obj.data.update()
