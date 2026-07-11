@@ -1,0 +1,1904 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 3.6.19 commit date:2024-12-16, commit time:12:51, hash:56679ff9b2b2</authoring_tool>
+    </contributor>
+    <created>2026-07-11T11:09:12</created>
+    <modified>2026-07-11T11:09:12</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="LegWrap-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">0.32 0.3 0.24 1</color>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">0.5</float>
+            </reflectivity>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images/>
+  <library_materials>
+    <material id="LegWrap-material" name="LegWrap">
+      <instance_effect url="#LegWrap-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="GanondorfAnkletRight_LOD0-mesh" name="GanondorfAnkletRight_LOD0">
+      <mesh>
+        <source id="GanondorfAnkletRight_LOD0-mesh-positions">
+          <float_array id="GanondorfAnkletRight_LOD0-mesh-positions-array" count="150">-0.01115155 -0.1600252 0.2944568 7.03521e-4 -0.03179222 0.2100073 -0.02577197 -0.1099254 0.1470897 0.035039 -0.04502022 0.1486129 0.05077177 -0.111931 0.106854 -0.05891406 -0.08347743 0.05350047 0.01596975 -0.1287925 0.1221101 -0.0207718 -0.01109647 0.3244398 -0.02817499 -0.1556318 0.3114872 -0.04187232 -0.0873689 0.1251028 -0.06732487 -0.03807818 0.3218895 0.05089402 -0.05232882 0.1077066 0.07587498 -0.07267254 0.08602482 -0.0360406 -0.04140257 0.05217021 0.1055667 -0.06276845 0.0626955 0.1010992 -0.1085392 0.06150054 0.05663824 -0.1169419 0.3228365 0.051696 -0.08098405 0.195625 -0.07156884 -0.1184523 0.3223124 0.05618286 -0.1116431 0.2373796 -0.01609718 -0.1245124 0.09769612 0.06278103 -0.08374124 0.3226302 -0.04023039 -0.06443673 0.1659402 0.004963696 -0.122406 0.1928753 0.03802239 -0.1314294 0.2420144 0.04920619 -0.1236382 0.08447301 0.006885468 -0.03267681 0.09713131 -0.004166483 -0.1588616 0.3136085 0.02570867 -0.01408028 0.2954162 -0.0159173 -0.1376741 0.04742407 -0.01359242 -0.04011768 0.1549832 0.03346127 -0.04929286 0.2062001 0.07772755 -0.03808665 0.06060332 0.05236434 -0.03678673 0.07383227 -0.04622596 -0.1503718 0.3190413 -0.05150794 -0.1008618 0.05450475 0.01034599 -0.1503739 0.3248867 -0.03542637 -0.125906 0.05239486 0.03780847 -0.02531325 0.3269323 -0.04046922 -0.09542137 0.2026972 0.110053 -0.09207206 0.06446295 0.06584954 -0.1342702 0.05906134 0.05323833 -0.1059454 0.1667287 0.03787159 -0.1243275 0.1781193 -0.03314745 -0.06033456 0.1003503 -0.01362532 -0.02767318 0.04652947 0.06364482 -0.08304023 0.1055755 -0.03919559 -0.0541225 0.2081226 -0.03466308 -0.01620781 0.2870306 -0.07804203 -0.09188669 0.2969162</float_array>
+          <technique_common>
+            <accessor source="#GanondorfAnkletRight_LOD0-mesh-positions-array" count="50" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="GanondorfAnkletRight_LOD0-mesh-normals">
+          <float_array id="GanondorfAnkletRight_LOD0-mesh-normals-array" count="150">0.9304085 -0.3593909 -0.07195991 0.9587306 0.2842836 -0.00431329 0.9895049 0.1342862 -0.05335986 0.8465251 -0.5322754 -0.008848011 0.4944846 -0.8581249 -0.1382274 -0.2684547 -0.9576742 -0.1038854 -0.04320925 -0.958827 -0.2806847 0.4816162 -0.8748729 -0.05141299 0.5493901 -0.8355321 -0.007525622 0.7741993 -0.6183521 0.1351165 0.09722995 -0.9930629 0.06612497 0.416943 -0.8084493 0.4154136 -0.6694285 -0.7384136 0.08130776 -0.4777472 -0.8597592 0.1804763 -0.8390705 -0.4933504 0.2292729 -0.9903084 -0.1099851 0.08481037 -0.005841076 0.9989913 0.04452365 -0.3591837 0.9318498 -0.05140972 0.5631696 0.8230052 0.07417947 -0.9222583 0.3834928 -0.04871219 -0.7621992 0.6335189 0.1330655 -0.968073 0.07965773 0.237675 -0.2243217 -0.9509023 0.2132246 0.9514998 -0.07687419 0.2978906 0.6712048 0.1600181 0.7237945 0.6661334 0.6916342 0.2791206 -0.2322952 0.9343698 0.2701706 -0.6160648 0.7198347 0.3198471 0.2326837 0.8964983 0.3770264 0.3687404 0.6692671 0.6450675 0.5153432 0.3239269 0.7934058 0.4678779 -0.458251 0.7557092 0.2764139 -0.8086182 0.5193575 0.5077438 -0.1436866 0.8494412 -0.4029142 0.8967072 -0.1832392 0.4527291 0.8884718 -0.07519602 -0.009367406 0.9803167 -0.1972092 -0.1575902 0.9872958 0.0203095 -0.836448 0.5373405 -0.1077959 -0.8213586 0.5247286 -0.2236742 -0.8760529 -0.4372524 -0.2033269 -0.986301 -0.1057341 -0.1266129 -0.8738892 -0.4298976 -0.2269492 -0.6348795 -0.6936194 -0.3403239 -0.3003141 -0.9522805 -0.05452924 0.7066109 0.7036346 -0.07482975 0.9267905 -0.3738471 0.03602576 0.4014316 -0.9153279 -0.03205513 0.7120397 0.701418 0.03181749 -0.6487411 -0.7000908 0.298342</float_array>
+          <technique_common>
+            <accessor source="#GanondorfAnkletRight_LOD0-mesh-normals-array" count="50" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="GanondorfAnkletRight_LOD0-mesh-map-0">
+          <float_array id="GanondorfAnkletRight_LOD0-mesh-map-0-array" count="468">0.4823333 0.1142892 0.4999833 0.0765587 0.500892 0.196801 0.4823333 0.1142892 0.4846978 0.1948419 0.4648861 0.1159041 0.4515846 0.0639255 0.4648861 0.1159041 0.4449582 0.1332266 0.4449582 0.1332266 0.4648861 0.1159041 0.4329932 0.1980118 0.4329932 0.1980118 0.4648861 0.1159041 0.4495276 0.1992654 0.8677448 0.4618079 0.8641671 0.4997012 0.8481995 0.4529497 0.8772912 0.5291786 0.8580825 0.5273079 0.8787619 0.5046651 0.8664837 0.5685767 0.8580825 0.5273079 0.8772912 0.5291786 0.885264 0.545983 0.8664837 0.5685767 0.8772912 0.5291786 0.9213454 0.5074791 0.8960331 0.5184016 0.8943102 0.4847266 0.885264 0.545983 0.8890001 0.5370001 0.9003685 0.5453391 0.885264 0.545983 0.8840318 0.5787127 0.8664837 0.5685767 0.8481995 0.4529497 0.8641671 0.4997012 0.8270569 0.5355878 0.8837414 0.4493675 0.8928211 0.4300333 0.9060356 0.462739 0.8960331 0.5184016 0.9213454 0.5074791 0.9003685 0.5453391 0.9213454 0.5074791 0.9420332 0.5332587 0.9003685 0.5453391 0.9003685 0.5453391 0.9420332 0.5332587 0.9260767 0.5532355 0.9420332 0.5332587 0.9213454 0.5074791 0.9060356 0.462739 0.9060356 0.462739 0.9213454 0.5074791 0.8943102 0.4847266 0.8943102 0.4847266 0.8837414 0.4493675 0.9060356 0.462739 0.8928211 0.4300333 0.9303897 0.4445858 0.9060356 0.462739 0.9343058 0.4132559 0.9303897 0.4445858 0.8928211 0.4300333 0.9029304 0.3766748 0.9343058 0.4132559 0.8928211 0.4300333 0.8600373 0.375988 0.8481995 0.4529497 0.8305365 0.421711 0.8746217 0.3794075 0.8481995 0.4529497 0.8600373 0.375988 0.8746217 0.3794075 0.9029304 0.3766748 0.8928211 0.4300333 0.8837414 0.4493675 0.8481995 0.4529497 0.8928211 0.4300333 0.8677448 0.4618079 0.8481995 0.4529497 0.8837414 0.4493675 0.8305365 0.421711 0.8481995 0.4529497 0.8270569 0.5355878 0.213905 0.1656813 0.1975 0.1715 0.2105666 0.09060519 0.2060011 0.2008585 0.213905 0.1656813 0.2364839 0.1995003 0.2364839 0.1995003 0.213905 0.1656813 0.2326394 0.08858954 0.2326394 0.08858954 0.2187437 0.03612214 0.2429464 0.03732079 0.2187437 0.03612214 0.2326394 0.08858954 0.2105666 0.09060519 0.2429464 0.03732079 0.2643354 0.083965 0.2326394 0.08858954 0.2364839 0.1995003 0.2645865 0.1783463 0.2835582 0.2047073 0.2326394 0.08858954 0.2643354 0.083965 0.2645865 0.1783463 0.2670712 0.01906329 0.2643354 0.083965 0.2429464 0.03732079 0.2802394 0.02543646 0.2643354 0.083965 0.2670712 0.01906329 0.2645865 0.1783463 0.3084695 0.203896 0.2835582 0.2047073 0.3084695 0.203896 0.2643354 0.083965 0.3099346 0.1356265 0.3084695 0.203896 0.3099346 0.1356265 0.323 0.2 0.5449025 0.04436433 0.5428596 0.08730757 0.5242426 0.03538161 0.520812 0.0811789 0.4999833 0.0765587 0.5242426 0.03538161 0.4999833 0.0765587 0.4836477 0.05089759 0.491 0.03399997 0.479 0.02999997 0.4836477 0.05089759 0.4714952 0.05690151 0.520812 0.0811789 0.5428596 0.08730757 0.5440374 0.1711493 0.5440374 0.1711493 0.5413476 0.2002598 0.4999833 0.0765587 0.500892 0.196801 0.4999833 0.0765587 0.5413476 0.2002598 0.4999833 0.0765587 0.520812 0.0811789 0.5440374 0.1711493 0.4846978 0.1948419 0.4823333 0.1142892 0.500892 0.196801 0.4846978 0.1948419 0.4495276 0.1992654 0.4648861 0.1159041 0.8837414 0.4493675 0.8784719 0.4768564 0.8677448 0.4618079 0.8580825 0.5273079 0.8641671 0.4997012 0.8787619 0.5046651 0.8270569 0.5355878 0.8641671 0.4997012 0.8580825 0.5273079 0.885264 0.545983 0.9003685 0.5453391 0.8840318 0.5787127 0.8580825 0.5273079 0.8664837 0.5685767 0.8434538 0.5527206 0.8580825 0.5273079 0.8434538 0.5527206 0.8270569 0.5355878 0.9003685 0.5453391 0.9260767 0.5532355 0.8840318 0.5787127 0.8837414 0.4493675 0.8943102 0.4847266 0.8875002 0.4785 0.9060356 0.462739 0.9303897 0.4445858 0.9420332 0.5332587 0.9343058 0.4132559 0.9420332 0.5332587 0.9303897 0.4445858 0.8928211 0.4300333 0.8481995 0.4529497 0.8746217 0.3794075 0.2429464 0.03732079 0.2187437 0.03612214 0.2346185 0.01722306 0.2060011 0.2008585 0.1975 0.1715 0.213905 0.1656813 0.2326394 0.08858954 0.213905 0.1656813 0.2105666 0.09060519 0.2326394 0.08858954 0.2645865 0.1783463 0.2364839 0.1995003 0.2645865 0.1783463 0.2643354 0.083965 0.3084695 0.203896 0.2643354 0.083965 0.2802394 0.02543646 0.3000339 0.06711518 0.3099346 0.1356265 0.2643354 0.083965 0.3000339 0.06711518 0.5242426 0.03538161 0.5428596 0.08730757 0.520812 0.0811789 0.479 0.02999997 0.4714952 0.05690151 0.4695002 0.02826553 0.562 0.199 0.5413476 0.2002598 0.5440374 0.1711493 0.4823333 0.1142892 0.4836477 0.05089759 0.4999833 0.0765587 0.4836477 0.05089759 0.4823333 0.1142892 0.4714952 0.05690151 0.4648861 0.1159041 0.4714952 0.05690151 0.4823333 0.1142892 0.4714952 0.05690151 0.4648861 0.1159041 0.4515846 0.0639255 0.4714952 0.05690151 0.4515846 0.0639255 0.4695002 0.02826553</float_array>
+          <technique_common>
+            <accessor source="#GanondorfAnkletRight_LOD0-mesh-map-0-array" count="234" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="GanondorfAnkletRight_LOD0-mesh-vertices">
+          <input semantic="POSITION" source="#GanondorfAnkletRight_LOD0-mesh-positions"/>
+        </vertices>
+        <triangles material="LegWrap-material" count="78">
+          <input semantic="VERTEX" source="#GanondorfAnkletRight_LOD0-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#GanondorfAnkletRight_LOD0-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#GanondorfAnkletRight_LOD0-mesh-map-0" offset="2" set="0"/>
+          <p>19 0 0 17 1 1 21 2 2 19 0 3 16 3 4 24 4 5 23 5 6 24 4 7 0 6 8 0 6 9 24 4 10 27 7 11 27 7 12 24 4 13 36 8 14 4 9 15 6 10 16 25 11 17 2 12 18 20 13 19 23 5 20 35 14 21 20 13 22 2 12 23 9 15 24 35 14 25 2 12 26 26 16 27 30 17 28 3 18 29 9 15 30 22 19 31 44 20 32 9 15 33 5 21 34 35 14 35 25 11 36 6 10 37 29 22 38 46 23 39 12 24 40 11 25 41 30 17 42 26 16 43 44 20 44 26 16 45 45 26 46 44 20 47 44 20 48 45 26 49 13 27 50 45 26 51 26 16 52 11 25 53 11 25 54 26 16 55 3 18 56 3 18 57 46 23 58 11 25 59 12 24 60 33 28 61 11 25 62 32 29 63 33 28 64 12 24 65 14 30 66 32 29 67 12 24 68 15 31 69 25 11 70 41 32 71 40 33 72 25 11 73 15 31 74 40 33 75 14 30 76 12 24 77 46 23 78 25 11 79 12 24 80 4 9 81 25 11 82 46 23 83 41 32 84 25 11 85 29 22 86 48 34 87 28 35 88 1 36 89 7 37 90 48 34 91 10 38 92 10 38 93 48 34 94 47 39 95 47 39 96 30 17 97 22 19 98 30 17 99 47 39 100 1 36 101 22 19 102 39 40 103 47 39 104 10 38 105 49 41 106 18 42 107 47 39 108 39 40 109 49 41 110 9 15 111 39 40 112 22 19 113 2 12 114 39 40 115 9 15 116 49 41 117 34 43 118 18 42 119 34 43 120 39 40 121 0 6 122 34 43 123 0 6 124 8 44 125 30 17 126 1 36 127 3 18 128 31 45 129 17 1 130 3 18 131 17 1 132 42 46 133 46 23 134 4 9 135 42 46 136 43 47 137 31 45 138 1 36 139 28 35 140 28 35 141 38 48 142 17 1 143 21 2 144 17 1 145 38 48 146 17 1 147 31 45 148 28 35 149 16 3 150 19 0 151 21 2 152 16 3 153 36 8 154 24 4 155 46 23 156 42 46 157 4 9 158 20 13 159 6 10 160 23 5 161 29 22 162 6 10 163 20 13 164 9 15 165 44 20 166 5 21 167 20 13 168 35 14 169 37 49 170 20 13 171 37 49 172 29 22 173 44 20 174 13 27 175 5 21 176 46 23 177 3 18 178 17 1 179 11 25 180 33 28 181 45 26 182 32 29 183 45 26 184 33 28 185 12 24 186 25 11 187 40 33 188 22 19 189 30 17 190 44 20 191 7 37 192 28 35 193 48 34 194 47 39 195 48 34 196 1 36 197 47 39 198 49 41 199 10 38 200 49 41 201 39 40 202 34 43 203 39 40 204 2 12 205 23 5 206 0 6 207 39 40 208 23 5 209 3 18 210 1 36 211 31 45 212 4 9 213 43 47 214 6 10 215 7 37 216 38 48 217 28 35 218 19 0 219 42 46 220 17 1 221 42 46 222 19 0 223 43 47 224 24 4 225 43 47 226 19 0 227 43 47 228 24 4 229 23 5 230 43 47 231 23 5 232 6 10 233</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers>
+    <controller id="GanondorfRig_GanondorfAnkletRight_LOD0-skin" name="GanondorfRig">
+      <skin source="#GanondorfAnkletRight_LOD0-mesh">
+        <bind_shape_matrix>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</bind_shape_matrix>
+        <source id="GanondorfRig_GanondorfAnkletRight_LOD0-skin-joints">
+          <Name_array id="GanondorfRig_GanondorfAnkletRight_LOD0-skin-joints-array" count="4">R_LOWER_LEG mKneeRight mAnkleRight R_FOOT</Name_array>
+          <technique_common>
+            <accessor source="#GanondorfRig_GanondorfAnkletRight_LOD0-skin-joints-array" count="4" stride="1">
+              <param name="JOINT" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="GanondorfRig_GanondorfAnkletRight_LOD0-skin-bind_poses">
+          <float_array id="GanondorfRig_GanondorfAnkletRight_LOD0-skin-bind_poses-array" count="64">1 0 0 -0.01299995 0 1 0 0.07999998 0 0 1 -0.335 0 0 0 1 1 0 0 -0.03299999 0 1 0 0.07999998 0 0 1 -0.535 0 0 0 1 1 0 0 -0.003999948 0 1 0 0.07999998 0 0 1 -0.06699997 0 0 0 1 1 0 0 -0.08099997 0 1 0 0.07999998 0 0 1 -0.02599996 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#GanondorfRig_GanondorfAnkletRight_LOD0-skin-bind_poses-array" count="4" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="GanondorfRig_GanondorfAnkletRight_LOD0-skin-weights">
+          <float_array id="GanondorfRig_GanondorfAnkletRight_LOD0-skin-weights-array" count="146">0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.485408 0.485408 0.01459199 0.01459199 0.08830338 0.08830338 0.4116966 0.4116966 0.4979761 0.4979761 0.002023935 0.002023935 0.5 0.5 0.5 0.5 0.4267959 0.4267959 0.07320404 0.07320404 0.5 0.5 0.4958408 0.4958408 0.004159212 0.004159212 0.219448 0.219448 0.2805519 0.2805519 0.1706409 0.1706409 0.3293591 0.3293591 0.02751284 0.02751284 0.4724871 0.4724871 0.01891934 0.01891934 0.4810806 0.4810806 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.468526 0.468526 0.03147405 0.03147405 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.3034855 0.3034855 0.1965144 0.1965144 0.4898492 0.4898492 0.01015079 0.01015079 0.5 0.5 0.5 0.5 0.1226794 0.1226794 0.3773205 0.3773205 0.4999682 0.4999682 3.18108e-5 3.18108e-5 0.5 0.5 0.07875472 0.07875472 0.4212452 0.4212452 0.2455809 0.2455809 0.2544191 0.2544191 0.5 0.5 0.1533455 0.1533455 0.3466545 0.3466545 0.5 0.5 0.1663208 0.1663208 0.3336791 0.3336791 0.5 0.5 0.5 0.5 0.03524112 0.03524112 0.4647589 0.4647589 0.1014638 0.1014638 0.3985362 0.3985362 0.5 0.5 0.5 0.5 0.4391674 0.4391674 0.0608325 0.0608325 0.1388852 0.1388852 0.3611148 0.3611148 0.439009 0.439009 0.06099098 0.06099098 0.5 0.5 0.5 0.5 0.5 0.5</float_array>
+          <technique_common>
+            <accessor source="#GanondorfRig_GanondorfAnkletRight_LOD0-skin-weights-array" count="146" stride="1">
+              <param name="WEIGHT" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <joints>
+          <input semantic="JOINT" source="#GanondorfRig_GanondorfAnkletRight_LOD0-skin-joints"/>
+          <input semantic="INV_BIND_MATRIX" source="#GanondorfRig_GanondorfAnkletRight_LOD0-skin-bind_poses"/>
+        </joints>
+        <vertex_weights count="50">
+          <input semantic="JOINT" source="#GanondorfRig_GanondorfAnkletRight_LOD0-skin-joints" offset="0"/>
+          <input semantic="WEIGHT" source="#GanondorfRig_GanondorfAnkletRight_LOD0-skin-weights" offset="1"/>
+          <vcount>2 2 2 2 4 4 4 2 2 4 2 4 4 4 4 4 2 2 2 2 4 2 2 2 2 4 4 2 2 4 4 2 4 4 2 4 2 4 2 2 4 4 2 2 4 4 4 2 2 2 </vcount>
+          <v>0 0 1 1 0 2 1 3 0 4 1 5 0 6 1 7 0 8 1 9 2 10 3 11 0 12 1 13 2 14 3 15 0 16 1 17 2 18 3 19 0 20 1 21 0 22 1 23 0 24 1 25 2 26 3 27 0 28 1 29 0 30 1 31 2 32 3 33 0 34 1 35 2 36 3 37 0 38 1 39 2 40 3 41 0 42 1 43 2 44 3 45 0 46 1 47 2 48 3 49 0 50 1 51 0 52 1 53 0 54 1 55 0 56 1 57 0 58 1 59 2 60 3 61 0 62 1 63 0 64 1 65 0 66 1 67 0 68 1 69 0 70 1 71 2 72 3 73 0 74 1 75 2 76 3 77 0 78 1 79 0 80 1 81 0 82 1 83 2 84 3 85 0 86 1 87 2 88 3 89 0 90 1 91 0 92 1 93 2 94 3 95 0 96 1 97 2 98 3 99 0 100 1 101 0 102 1 103 2 104 3 105 0 106 1 107 0 108 1 109 2 110 3 111 0 112 1 113 0 114 1 115 0 116 1 117 2 118 3 119 0 120 1 121 2 122 3 123 0 124 1 125 0 126 1 127 0 128 1 129 2 130 3 131 0 132 1 133 2 134 3 135 0 136 1 137 2 138 3 139 0 140 1 141 0 142 1 143 0 144 1 145</v>
+        </vertex_weights>
+      </skin>
+    </controller>
+  </library_controllers>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="GanondorfRig" name="GanondorfRig" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <node id="GanondorfRig_mPelvis" name="mPelvis" sid="mPelvis" type="JOINT">
+          <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 1.067 0 0 0 1</matrix>
+          <node id="GanondorfRig_PELVIS" name="PELVIS" sid="PELVIS" type="JOINT">
+            <matrix sid="transform">1 0 0 -0.01 0 1 0 0 0 0 1 -0.01999998 0 0 0 1</matrix>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+                <roll sid="roll" type="float">0.1396263</roll>
+                <tip_x sid="tip_x" type="float">0</tip_x>
+                <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                <tip_z sid="tip_z" type="float">0</tip_z>
+              </technique>
+            </extra>
+          </node>
+          <node id="GanondorfRig_BUTT" name="BUTT" sid="BUTT" type="JOINT">
+            <matrix sid="transform">1 0 0 -0.06 0 1 0 0 0 0 1 -0.1 0 0 0 1</matrix>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+                <tip_x sid="tip_x" type="float">0</tip_x>
+                <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                <tip_z sid="tip_z" type="float">0</tip_z>
+              </technique>
+            </extra>
+          </node>
+          <node id="GanondorfRig_mSpine1" name="mSpine1" sid="mSpine1" type="JOINT">
+            <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0.08399999 0 0 0 1</matrix>
+            <node id="GanondorfRig_mSpine2" name="mSpine2" sid="mSpine2" type="JOINT">
+              <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 -0.08399999 0 0 0 1</matrix>
+              <node id="GanondorfRig_mTorso" name="mTorso" sid="mTorso" type="JOINT">
+                <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0.08399999 0 0 0 1</matrix>
+                <node id="GanondorfRig_BELLY" name="BELLY" sid="BELLY" type="JOINT">
+                  <matrix sid="transform">1 0 0 0.028 0 1 0 0 0 0 1 0.03999996 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <layer sid="layer" type="string">0</layer>
+                      <roll sid="roll" type="float">0.1396263</roll>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                      <tip_z sid="tip_z" type="float">0</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <node id="GanondorfRig_LEFT_HANDLE" name="LEFT_HANDLE" sid="LEFT_HANDLE" type="JOINT">
+                  <matrix sid="transform">1 0 0 0 0 1 0 0.1 0 0 1 0.05799997 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                      <tip_z sid="tip_z" type="float">0</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <node id="GanondorfRig_RIGHT_HANDLE" name="RIGHT_HANDLE" sid="RIGHT_HANDLE" type="JOINT">
+                  <matrix sid="transform">1 0 0 0 0 1 0 -0.09999999 0 0 1 0.05799997 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                      <tip_z sid="tip_z" type="float">0</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <node id="GanondorfRig_LOWER_BACK" name="LOWER_BACK" sid="LOWER_BACK" type="JOINT">
+                  <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0.023 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                      <tip_z sid="tip_z" type="float">0</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <node id="GanondorfRig_mSpine3" name="mSpine3" sid="mSpine3" type="JOINT">
+                  <matrix sid="transform">1 0 0 -0.015 0 1 0 0 0 0 1 0.2049999 0 0 0 1</matrix>
+                  <node id="GanondorfRig_mSpine4" name="mSpine4" sid="mSpine4" type="JOINT">
+                    <matrix sid="transform">1 0 0 0.015 0 1 0 0 0 0 1 -0.2049999 0 0 0 1</matrix>
+                    <node id="GanondorfRig_mChest" name="mChest" sid="mChest" type="JOINT">
+                      <matrix sid="transform">1 0 0 -0.015 0 1 0 0 0 0 1 0.2049999 0 0 0 1</matrix>
+                      <node id="GanondorfRig_CHEST" name="CHEST" sid="CHEST" type="JOINT">
+                        <matrix sid="transform">1 0 -1.49012e-8 0.028 0 1 0 0 1.49012e-8 0 1 0.07000005 0 0 0 1</matrix>
+                        <extra>
+                          <technique profile="blender">
+                            <layer sid="layer" type="string">0</layer>
+                            <roll sid="roll" type="float">-0.1745329</roll>
+                            <tip_x sid="tip_x" type="float">0</tip_x>
+                            <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                            <tip_z sid="tip_z" type="float">0</tip_z>
+                          </technique>
+                        </extra>
+                      </node>
+                      <node id="GanondorfRig_LEFT_PEC" name="LEFT_PEC" sid="LEFT_PEC" type="JOINT">
+                        <matrix sid="transform">1 0 0 0.119 0 1 0 0.082 0 0 1 0.04200006 0 0 0 1</matrix>
+                        <extra>
+                          <technique profile="blender">
+                            <layer sid="layer" type="string">0</layer>
+                            <roll sid="roll" type="float">0.07487457</roll>
+                            <tip_x sid="tip_x" type="float">0</tip_x>
+                            <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                            <tip_z sid="tip_z" type="float">0</tip_z>
+                          </technique>
+                        </extra>
+                      </node>
+                      <node id="GanondorfRig_RIGHT_PEC" name="RIGHT_PEC" sid="RIGHT_PEC" type="JOINT">
+                        <matrix sid="transform">1 0 0 0.119 0 1 0 -0.082 0 0 1 0.04200006 0 0 0 1</matrix>
+                        <extra>
+                          <technique profile="blender">
+                            <layer sid="layer" type="string">0</layer>
+                            <roll sid="roll" type="float">0.07487457</roll>
+                            <tip_x sid="tip_x" type="float">0</tip_x>
+                            <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                            <tip_z sid="tip_z" type="float">0</tip_z>
+                          </technique>
+                        </extra>
+                      </node>
+                      <node id="GanondorfRig_UPPER_BACK" name="UPPER_BACK" sid="UPPER_BACK" type="JOINT">
+                        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0.01700008 0 0 0 1</matrix>
+                        <extra>
+                          <technique profile="blender">
+                            <layer sid="layer" type="string">0</layer>
+                            <tip_x sid="tip_x" type="float">0</tip_x>
+                            <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                            <tip_z sid="tip_z" type="float">0</tip_z>
+                          </technique>
+                        </extra>
+                      </node>
+                      <node id="GanondorfRig_mNeck" name="mNeck" sid="mNeck" type="JOINT">
+                        <matrix sid="transform">1 0 0 -0.01 0 1 0 0 0 0 1 0.251 0 0 0 1</matrix>
+                        <node id="GanondorfRig_NECK" name="NECK" sid="NECK" type="JOINT">
+                          <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0.01999998 0 0 0 1</matrix>
+                          <extra>
+                            <technique profile="blender">
+                              <layer sid="layer" type="string">0</layer>
+                              <tip_x sid="tip_x" type="float">0</tip_x>
+                              <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                              <tip_z sid="tip_z" type="float">0</tip_z>
+                            </technique>
+                          </extra>
+                        </node>
+                        <node id="GanondorfRig_mHead" name="mHead" sid="mHead" type="JOINT">
+                          <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0.07599998 0 0 0 1</matrix>
+                          <node id="GanondorfRig_HEAD" name="HEAD" sid="HEAD" type="JOINT">
+                            <matrix sid="transform">1 0 0 0.02 0 1 0 0 0 0 1 0.07000005 0 0 0 1</matrix>
+                            <extra>
+                              <technique profile="blender">
+                                <layer sid="layer" type="string">0</layer>
+                                <tip_x sid="tip_x" type="float">0</tip_x>
+                                <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                <tip_z sid="tip_z" type="float">0</tip_z>
+                              </technique>
+                            </extra>
+                          </node>
+                          <node id="GanondorfRig_mSkull" name="mSkull" sid="mSkull" type="JOINT">
+                            <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0.079 0 0 0 1</matrix>
+                            <extra>
+                              <technique profile="blender">
+                                <layer sid="layer" type="string">0</layer>
+                                <tip_x sid="tip_x" type="float">0</tip_x>
+                                <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                <tip_z sid="tip_z" type="float">0</tip_z>
+                              </technique>
+                            </extra>
+                          </node>
+                          <node id="GanondorfRig_mEyeRight" name="mEyeRight" sid="mEyeRight" type="JOINT">
+                            <matrix sid="transform">1 0 0 0.098 0 1 0 -0.036 0 0 1 0.079 0 0 0 1</matrix>
+                            <extra>
+                              <technique profile="blender">
+                                <layer sid="layer" type="string">0</layer>
+                                <tip_x sid="tip_x" type="float">0</tip_x>
+                                <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                <tip_z sid="tip_z" type="float">0</tip_z>
+                              </technique>
+                            </extra>
+                          </node>
+                          <node id="GanondorfRig_mEyeLeft" name="mEyeLeft" sid="mEyeLeft" type="JOINT">
+                            <matrix sid="transform">1 0 0 0.098 0 1 0 0.036 0 0 1 0.079 0 0 0 1</matrix>
+                            <extra>
+                              <technique profile="blender">
+                                <layer sid="layer" type="string">0</layer>
+                                <tip_x sid="tip_x" type="float">0</tip_x>
+                                <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                <tip_z sid="tip_z" type="float">0</tip_z>
+                              </technique>
+                            </extra>
+                          </node>
+                          <node id="GanondorfRig_mFaceRoot" name="mFaceRoot" sid="mFaceRoot" type="JOINT">
+                            <matrix sid="transform">1 0 0 0.025 0 1 0 0 0 0 1 0.04500008 0 0 0 1</matrix>
+                            <node id="GanondorfRig_mFaceEyeAltRight" name="mFaceEyeAltRight" sid="mFaceEyeAltRight" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.073 0 1 0 -0.036 0 0 1 0.03399992 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceEyeAltLeft" name="mFaceEyeAltLeft" sid="mFaceEyeAltLeft" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.073 0 1 0 0.036 0 0 1 0.03399992 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceForeheadLeft" name="mFaceForeheadLeft" sid="mFaceForeheadLeft" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.061 0 1 0 0.035 0 0 1 0.08299994 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceForeheadRight" name="mFaceForeheadRight" sid="mFaceForeheadRight" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.061 0 1 0 -0.035 0 0 1 0.08299994 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceEyebrowOuterLeft" name="mFaceEyebrowOuterLeft" sid="mFaceEyebrowOuterLeft" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.064 0 1 0 0.051 0 0 1 0.04799998 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceEyebrowCenterLeft" name="mFaceEyebrowCenterLeft" sid="mFaceEyebrowCenterLeft" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.07 0 1 0 0.043 0 0 1 0.05599999 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceEyebrowInnerLeft" name="mFaceEyebrowInnerLeft" sid="mFaceEyebrowInnerLeft" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.075 0 1 0 0.022 0 0 1 0.051 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceEyebrowOuterRight" name="mFaceEyebrowOuterRight" sid="mFaceEyebrowOuterRight" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.064 0 1 0 -0.051 0 0 1 0.04799998 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceEyebrowCenterRight" name="mFaceEyebrowCenterRight" sid="mFaceEyebrowCenterRight" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.07 0 1 0 -0.043 0 0 1 0.05599999 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceEyebrowInnerRight" name="mFaceEyebrowInnerRight" sid="mFaceEyebrowInnerRight" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.075 0 1 0 -0.022 0 0 1 0.051 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceEyeLidUpperLeft" name="mFaceEyeLidUpperLeft" sid="mFaceEyeLidUpperLeft" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.073 0 1 0 0.036 0 0 1 0.03399992 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceEyeLidLowerLeft" name="mFaceEyeLidLowerLeft" sid="mFaceEyeLidLowerLeft" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.073 0 1 0 0.036 0 0 1 0.03399992 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceEyeLidUpperRight" name="mFaceEyeLidUpperRight" sid="mFaceEyeLidUpperRight" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.073 0 1 0 -0.036 0 0 1 0.03399992 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceEyeLidLowerRight" name="mFaceEyeLidLowerRight" sid="mFaceEyeLidLowerRight" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.073 0 1 0 -0.036 0 0 1 0.03399992 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceEar1Left" name="mFaceEar1Left" sid="mFaceEar1Left" type="JOINT">
+                              <matrix sid="transform">1 0 0 0 0 1 0 0.08 0 0 1 0.001999974 0 0 0 1</matrix>
+                              <node id="GanondorfRig_mFaceEar2Left" name="mFaceEar2Left" sid="mFaceEar2Left" type="JOINT">
+                                <matrix sid="transform">1 0 0 -0.019 0 1 0 0.018 0 0 1 0.02499998 0 0 0 1</matrix>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceEar1Right" name="mFaceEar1Right" sid="mFaceEar1Right" type="JOINT">
+                              <matrix sid="transform">1 0 0 0 0 1 0 -0.08 0 0 1 0.001999974 0 0 0 1</matrix>
+                              <node id="GanondorfRig_mFaceEar2Right" name="mFaceEar2Right" sid="mFaceEar2Right" type="JOINT">
+                                <matrix sid="transform">1 0 0 -0.019 0 1 0 -0.018 0 0 1 0.02499998 0 0 0 1</matrix>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceNoseLeft" name="mFaceNoseLeft" sid="mFaceNoseLeft" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.086 0 1 0 0.015 0 0 1 -0.004000068 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceNoseCenter" name="mFaceNoseCenter" sid="mFaceNoseCenter" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.102 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceNoseRight" name="mFaceNoseRight" sid="mFaceNoseRight" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.086 0 1 0 -0.015 0 0 1 -0.004000068 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceCheekLowerLeft" name="mFaceCheekLowerLeft" sid="mFaceCheekLowerLeft" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.05 0 1 0 0.034 0 0 1 -0.03100002 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceCheekUpperLeft" name="mFaceCheekUpperLeft" sid="mFaceCheekUpperLeft" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.07 0 1 0 0.034 0 0 1 -0.004999995 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceCheekLowerRight" name="mFaceCheekLowerRight" sid="mFaceCheekLowerRight" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.05 0 1 0 -0.034 0 0 1 -0.03100002 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceCheekUpperRight" name="mFaceCheekUpperRight" sid="mFaceCheekUpperRight" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.07 0 1 0 -0.034 0 0 1 -0.004999995 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceJaw" name="mFaceJaw" sid="mFaceJaw" type="JOINT">
+                              <matrix sid="transform">1 0 0 -0.001 0 1 0 0 0 0 1 -0.01499999 0 0 0 1</matrix>
+                              <node id="GanondorfRig_mFaceChin" name="mFaceChin" sid="mFaceChin" type="JOINT">
+                                <matrix sid="transform">1 0 0 0.074 0 1 0 0 0 0 1 -0.05400002 0 0 0 1</matrix>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <node id="GanondorfRig_mFaceTeethLower" name="mFaceTeethLower" sid="mFaceTeethLower" type="JOINT">
+                                <matrix sid="transform">1 0 0 0.021 0 1 0 0 0 0 1 -0.03900003 0 0 0 1</matrix>
+                                <node id="GanondorfRig_mFaceLipLowerLeft" name="mFaceLipLowerLeft" sid="mFaceLipLowerLeft" type="JOINT">
+                                  <matrix sid="transform">1 0 0 0.045 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                                  <extra>
+                                    <technique profile="blender">
+                                      <layer sid="layer" type="string">0</layer>
+                                      <tip_x sid="tip_x" type="float">0</tip_x>
+                                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                      <tip_z sid="tip_z" type="float">0</tip_z>
+                                    </technique>
+                                  </extra>
+                                </node>
+                                <node id="GanondorfRig_mFaceLipLowerRight" name="mFaceLipLowerRight" sid="mFaceLipLowerRight" type="JOINT">
+                                  <matrix sid="transform">1 0 0 0.045 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                                  <extra>
+                                    <technique profile="blender">
+                                      <layer sid="layer" type="string">0</layer>
+                                      <tip_x sid="tip_x" type="float">0</tip_x>
+                                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                      <tip_z sid="tip_z" type="float">0</tip_z>
+                                    </technique>
+                                  </extra>
+                                </node>
+                                <node id="GanondorfRig_mFaceLipLowerCenter" name="mFaceLipLowerCenter" sid="mFaceLipLowerCenter" type="JOINT">
+                                  <matrix sid="transform">1 0 0 0.045 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                                  <extra>
+                                    <technique profile="blender">
+                                      <layer sid="layer" type="string">0</layer>
+                                      <tip_x sid="tip_x" type="float">0</tip_x>
+                                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                      <tip_z sid="tip_z" type="float">0</tip_z>
+                                    </technique>
+                                  </extra>
+                                </node>
+                                <node id="GanondorfRig_mFaceTongueBase" name="mFaceTongueBase" sid="mFaceTongueBase" type="JOINT">
+                                  <matrix sid="transform">1 0 0 0.039 0 1 0 0 0 0 1 0.004999995 0 0 0 1</matrix>
+                                  <node id="GanondorfRig_mFaceTongueTip" name="mFaceTongueTip" sid="mFaceTongueTip" type="JOINT">
+                                    <matrix sid="transform">1 0 0 0.022 0 1 0 0 0 0 1 0.006999969 0 0 0 1</matrix>
+                                    <extra>
+                                      <technique profile="blender">
+                                        <layer sid="layer" type="string">0</layer>
+                                        <tip_x sid="tip_x" type="float">0</tip_x>
+                                        <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                        <tip_z sid="tip_z" type="float">0</tip_z>
+                                      </technique>
+                                    </extra>
+                                  </node>
+                                  <extra>
+                                    <technique profile="blender">
+                                      <layer sid="layer" type="string">0</layer>
+                                      <tip_x sid="tip_x" type="float">0</tip_x>
+                                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                      <tip_z sid="tip_z" type="float">0</tip_z>
+                                    </technique>
+                                  </extra>
+                                </node>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceJawShaper" name="mFaceJawShaper" sid="mFaceJawShaper" type="JOINT">
+                              <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceForeheadCenter" name="mFaceForeheadCenter" sid="mFaceForeheadCenter" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.069 0 1 0 0 0 0 1 0.06499994 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceNoseBase" name="mFaceNoseBase" sid="mFaceNoseBase" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.094 0 1 0 0 0 0 1 -0.01600003 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceTeethUpper" name="mFaceTeethUpper" sid="mFaceTeethUpper" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.02 0 1 0 0 0 0 1 -0.03000009 0 0 0 1</matrix>
+                              <node id="GanondorfRig_mFaceLipUpperLeft" name="mFaceLipUpperLeft" sid="mFaceLipUpperLeft" type="JOINT">
+                                <matrix sid="transform">1 0 0 0.045 0 1 0 0 0 0 1 -0.002999902 0 0 0 1</matrix>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <node id="GanondorfRig_mFaceLipUpperRight" name="mFaceLipUpperRight" sid="mFaceLipUpperRight" type="JOINT">
+                                <matrix sid="transform">1 0 0 0.045 0 1 0 0 0 0 1 -0.002999902 0 0 0 1</matrix>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <node id="GanondorfRig_mFaceLipCornerLeft" name="mFaceLipCornerLeft" sid="mFaceLipCornerLeft" type="JOINT">
+                                <matrix sid="transform">1 0 0 0.028 0 1 0 -0.019 0 0 1 -0.00999999 0 0 0 1</matrix>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <node id="GanondorfRig_mFaceLipCornerRight" name="mFaceLipCornerRight" sid="mFaceLipCornerRight" type="JOINT">
+                                <matrix sid="transform">1 0 0 0.028 0 1 0 0.019 0 0 1 -0.00999999 0 0 0 1</matrix>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <node id="GanondorfRig_mFaceLipUpperCenter" name="mFaceLipUpperCenter" sid="mFaceLipUpperCenter" type="JOINT">
+                                <matrix sid="transform">1 0 0 0.045 0 1 0 0 0 0 1 -0.002999902 0 0 0 1</matrix>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceEyecornerInnerLeft" name="mFaceEyecornerInnerLeft" sid="mFaceEyecornerInnerLeft" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.075 0 1 0 0.017 0 0 1 0.03199995 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceEyecornerInnerRight" name="mFaceEyecornerInnerRight" sid="mFaceEyecornerInnerRight" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.075 0 1 0 -0.017 0 0 1 0.03199995 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mFaceNoseBridge" name="mFaceNoseBridge" sid="mFaceNoseBridge" type="JOINT">
+                              <matrix sid="transform">1 0 0 0.091 0 1 0 0 0 0 1 0.01999998 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <extra>
+                              <technique profile="blender">
+                                <layer sid="layer" type="string">0</layer>
+                                <tip_x sid="tip_x" type="float">0</tip_x>
+                                <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                <tip_z sid="tip_z" type="float">0</tip_z>
+                              </technique>
+                            </extra>
+                          </node>
+                          <extra>
+                            <technique profile="blender">
+                              <layer sid="layer" type="string">0</layer>
+                              <tip_x sid="tip_x" type="float">0</tip_x>
+                              <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                              <tip_z sid="tip_z" type="float">0</tip_z>
+                            </technique>
+                          </extra>
+                        </node>
+                        <extra>
+                          <technique profile="blender">
+                            <layer sid="layer" type="string">0</layer>
+                            <tip_x sid="tip_x" type="float">0</tip_x>
+                            <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                            <tip_z sid="tip_z" type="float">0</tip_z>
+                          </technique>
+                        </extra>
+                      </node>
+                      <node id="GanondorfRig_mCollarLeft" name="mCollarLeft" sid="mCollarLeft" type="JOINT">
+                        <matrix sid="transform">1 0 0 -0.021 0 1 0 0.085 0 0 1 0.1650001 0 0 0 1</matrix>
+                        <node id="GanondorfRig_L_CLAVICLE" name="L_CLAVICLE" sid="L_CLAVICLE" type="JOINT">
+                          <matrix sid="transform">1 0 0 0.02 0 1 0 0 0 0 1 0.01999998 0 0 0 1</matrix>
+                          <extra>
+                            <technique profile="blender">
+                              <layer sid="layer" type="string">0</layer>
+                              <tip_x sid="tip_x" type="float">0</tip_x>
+                              <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                              <tip_z sid="tip_z" type="float">0</tip_z>
+                            </technique>
+                          </extra>
+                        </node>
+                        <node id="GanondorfRig_mShoulderLeft" name="mShoulderLeft" sid="mShoulderLeft" type="JOINT">
+                          <matrix sid="transform">1 0 0 0 0 1 0 0.079 0 0 1 0 0 0 0 1</matrix>
+                          <node id="GanondorfRig_L_UPPER_ARM" name="L_UPPER_ARM" sid="L_UPPER_ARM" type="JOINT">
+                            <matrix sid="transform">1 0 0 0 0 1 0 0.12 0 0 1 0.00999999 0 0 0 1</matrix>
+                            <extra>
+                              <technique profile="blender">
+                                <layer sid="layer" type="string">0</layer>
+                                <tip_x sid="tip_x" type="float">0</tip_x>
+                                <tip_y sid="tip_y" type="float">0.02988582</tip_y>
+                                <tip_z sid="tip_z" type="float">-0.002614617</tip_z>
+                              </technique>
+                            </extra>
+                          </node>
+                          <node id="GanondorfRig_mElbowLeft" name="mElbowLeft" sid="mElbowLeft" type="JOINT">
+                            <matrix sid="transform">1 0 0 0 0 1 0 0.248 0 0 1 0 0 0 0 1</matrix>
+                            <node id="GanondorfRig_L_LOWER_ARM" name="L_LOWER_ARM" sid="L_LOWER_ARM" type="JOINT">
+                              <matrix sid="transform">1 0 0 0 0 0.9999999 0 0.1 0 0 0.9999999 0 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.0299589</tip_y>
+                                  <tip_z sid="tip_z" type="float">-0.001570105</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mWristLeft" name="mWristLeft" sid="mWristLeft" type="JOINT">
+                              <matrix sid="transform">1 0 0 0 0 1 0 0.205 0 0 1 0 0 0 0 1</matrix>
+                              <node id="GanondorfRig_L_HAND" name="L_HAND" sid="L_HAND" type="JOINT">
+                                <matrix sid="transform">0.9999999 -7.567e-10 9.31323e-10 0.009999998 1.41154e-8 0.9999999 3.72529e-9 0.05000001 -9.31323e-10 3.72529e-9 1 0 0 0 0 1</matrix>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <roll sid="roll" type="float">0.004581928</roll>
+                                    <tip_x sid="tip_x" type="float">0.005202293</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02950376</tip_y>
+                                    <tip_z sid="tip_z" type="float">-0.001570105</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <node id="GanondorfRig_mHandMiddle1Left" name="mHandMiddle1Left" sid="mHandMiddle1Left" type="JOINT">
+                                <matrix sid="transform">1 0 0 0.013 0 1 0 0.101 0 0 1 0.01499999 0 0 0 1</matrix>
+                                <node id="GanondorfRig_mHandMiddle2Left" name="mHandMiddle2Left" sid="mHandMiddle2Left" type="JOINT">
+                                  <matrix sid="transform">1 0 0 -0.001 0 1 0 0.04000002 0 0 1 -0.006000042 0 0 0 1</matrix>
+                                  <node id="GanondorfRig_mHandMiddle3Left" name="mHandMiddle3Left" sid="mHandMiddle3Left" type="JOINT">
+                                    <matrix sid="transform">1 0 0 -0.001 0 1 0 0.04899997 0 0 1 -0.008000016 0 0 0 1</matrix>
+                                    <extra>
+                                      <technique profile="blender">
+                                        <layer sid="layer" type="string">0</layer>
+                                        <tip_x sid="tip_x" type="float">0</tip_x>
+                                        <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                        <tip_z sid="tip_z" type="float">0</tip_z>
+                                      </technique>
+                                    </extra>
+                                  </node>
+                                  <extra>
+                                    <technique profile="blender">
+                                      <layer sid="layer" type="string">0</layer>
+                                      <tip_x sid="tip_x" type="float">0</tip_x>
+                                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                      <tip_z sid="tip_z" type="float">0</tip_z>
+                                    </technique>
+                                  </extra>
+                                </node>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <node id="GanondorfRig_mHandIndex1Left" name="mHandIndex1Left" sid="mHandIndex1Left" type="JOINT">
+                                <matrix sid="transform">1 0 0 0.038 0 1 0 0.097 0 0 1 0.01499999 0 0 0 1</matrix>
+                                <node id="GanondorfRig_mHandIndex2Left" name="mHandIndex2Left" sid="mHandIndex2Left" type="JOINT">
+                                  <matrix sid="transform">1 0 0 0.017 0 1 0 0.03600001 0 0 1 -0.006000042 0 0 0 1</matrix>
+                                  <node id="GanondorfRig_mHandIndex3Left" name="mHandIndex3Left" sid="mHandIndex3Left" type="JOINT">
+                                    <matrix sid="transform">1 0 0 0.014 0 1 0 0.03200001 0 0 1 -0.005999923 0 0 0 1</matrix>
+                                    <extra>
+                                      <technique profile="blender">
+                                        <layer sid="layer" type="string">0</layer>
+                                        <tip_x sid="tip_x" type="float">0</tip_x>
+                                        <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                        <tip_z sid="tip_z" type="float">0</tip_z>
+                                      </technique>
+                                    </extra>
+                                  </node>
+                                  <extra>
+                                    <technique profile="blender">
+                                      <layer sid="layer" type="string">0</layer>
+                                      <tip_x sid="tip_x" type="float">0</tip_x>
+                                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                      <tip_z sid="tip_z" type="float">0</tip_z>
+                                    </technique>
+                                  </extra>
+                                </node>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <node id="GanondorfRig_mHandRing1Left" name="mHandRing1Left" sid="mHandRing1Left" type="JOINT">
+                                <matrix sid="transform">1 0 0 -0.01 0 1 0 0.09900004 0 0 1 0.008999944 0 0 0 1</matrix>
+                                <node id="GanondorfRig_mHandRing2Left" name="mHandRing2Left" sid="mHandRing2Left" type="JOINT">
+                                  <matrix sid="transform">1 0 0 -0.013 0 1 0 0.03799999 0 0 1 -0.008000016 0 0 0 1</matrix>
+                                  <node id="GanondorfRig_mHandRing3Left" name="mHandRing3Left" sid="mHandRing3Left" type="JOINT">
+                                    <matrix sid="transform">1 0 0 -0.013 0 1 0 0.04000002 0 0 1 -0.008999944 0 0 0 1</matrix>
+                                    <extra>
+                                      <technique profile="blender">
+                                        <layer sid="layer" type="string">0</layer>
+                                        <tip_x sid="tip_x" type="float">0</tip_x>
+                                        <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                        <tip_z sid="tip_z" type="float">0</tip_z>
+                                      </technique>
+                                    </extra>
+                                  </node>
+                                  <extra>
+                                    <technique profile="blender">
+                                      <layer sid="layer" type="string">0</layer>
+                                      <tip_x sid="tip_x" type="float">0</tip_x>
+                                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                      <tip_z sid="tip_z" type="float">0</tip_z>
+                                    </technique>
+                                  </extra>
+                                </node>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <node id="GanondorfRig_mHandPinky1Left" name="mHandPinky1Left" sid="mHandPinky1Left" type="JOINT">
+                                <matrix sid="transform">1 0 0 -0.031 0 1 0 0.09500003 0 0 1 0.003000021 0 0 0 1</matrix>
+                                <node id="GanondorfRig_mHandPinky2Left" name="mHandPinky2Left" sid="mHandPinky2Left" type="JOINT">
+                                  <matrix sid="transform">1 0 0 -0.024 0 1 0 0.02499998 0 0 1 -0.006000042 0 0 0 1</matrix>
+                                  <node id="GanondorfRig_mHandPinky3Left" name="mHandPinky3Left" sid="mHandPinky3Left" type="JOINT">
+                                    <matrix sid="transform">1 0 0 -0.015 0 1 0 0.01800001 0 0 1 -0.003999949 0 0 0 1</matrix>
+                                    <extra>
+                                      <technique profile="blender">
+                                        <layer sid="layer" type="string">0</layer>
+                                        <tip_x sid="tip_x" type="float">0</tip_x>
+                                        <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                        <tip_z sid="tip_z" type="float">0</tip_z>
+                                      </technique>
+                                    </extra>
+                                  </node>
+                                  <extra>
+                                    <technique profile="blender">
+                                      <layer sid="layer" type="string">0</layer>
+                                      <tip_x sid="tip_x" type="float">0</tip_x>
+                                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                      <tip_z sid="tip_z" type="float">0</tip_z>
+                                    </technique>
+                                  </extra>
+                                </node>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <node id="GanondorfRig_mHandThumb1Left" name="mHandThumb1Left" sid="mHandThumb1Left" type="JOINT">
+                                <matrix sid="transform">1 0 0 0.031 0 1 0 0.02600002 0 0 1 0.003999949 0 0 0 1</matrix>
+                                <node id="GanondorfRig_mHandThumb2Left" name="mHandThumb2Left" sid="mHandThumb2Left" type="JOINT">
+                                  <matrix sid="transform">1 0 0 0.028 0 1 0 0.03200001 0 0 1 -9.99928e-4 0 0 0 1</matrix>
+                                  <node id="GanondorfRig_mHandThumb3Left" name="mHandThumb3Left" sid="mHandThumb3Left" type="JOINT">
+                                    <matrix sid="transform">1 0 0 0.023 0 1 0 0.03099996 0 0 1 -0.001000047 0 0 0 1</matrix>
+                                    <extra>
+                                      <technique profile="blender">
+                                        <layer sid="layer" type="string">0</layer>
+                                        <tip_x sid="tip_x" type="float">0</tip_x>
+                                        <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                        <tip_z sid="tip_z" type="float">0</tip_z>
+                                      </technique>
+                                    </extra>
+                                  </node>
+                                  <extra>
+                                    <technique profile="blender">
+                                      <layer sid="layer" type="string">0</layer>
+                                      <tip_x sid="tip_x" type="float">0</tip_x>
+                                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                      <tip_z sid="tip_z" type="float">0</tip_z>
+                                    </technique>
+                                  </extra>
+                                </node>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <extra>
+                              <technique profile="blender">
+                                <layer sid="layer" type="string">0</layer>
+                                <tip_x sid="tip_x" type="float">0</tip_x>
+                                <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                <tip_z sid="tip_z" type="float">0</tip_z>
+                              </technique>
+                            </extra>
+                          </node>
+                          <extra>
+                            <technique profile="blender">
+                              <layer sid="layer" type="string">0</layer>
+                              <tip_x sid="tip_x" type="float">0</tip_x>
+                              <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                              <tip_z sid="tip_z" type="float">0</tip_z>
+                            </technique>
+                          </extra>
+                        </node>
+                        <extra>
+                          <technique profile="blender">
+                            <layer sid="layer" type="string">0</layer>
+                            <tip_x sid="tip_x" type="float">0</tip_x>
+                            <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                            <tip_z sid="tip_z" type="float">0</tip_z>
+                          </technique>
+                        </extra>
+                      </node>
+                      <node id="GanondorfRig_mCollarRight" name="mCollarRight" sid="mCollarRight" type="JOINT">
+                        <matrix sid="transform">1 0 0 -0.021 0 1 0 -0.085 0 0 1 0.1650001 0 0 0 1</matrix>
+                        <node id="GanondorfRig_R_CLAVICLE" name="R_CLAVICLE" sid="R_CLAVICLE" type="JOINT">
+                          <matrix sid="transform">1 0 0 0.02 0 1 0 0 0 0 1 0.01999998 0 0 0 1</matrix>
+                          <extra>
+                            <technique profile="blender">
+                              <layer sid="layer" type="string">0</layer>
+                              <tip_x sid="tip_x" type="float">0</tip_x>
+                              <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                              <tip_z sid="tip_z" type="float">0</tip_z>
+                            </technique>
+                          </extra>
+                        </node>
+                        <node id="GanondorfRig_mShoulderRight" name="mShoulderRight" sid="mShoulderRight" type="JOINT">
+                          <matrix sid="transform">1 0 0 0 0 1 0 -0.079 0 0 1 0 0 0 0 1</matrix>
+                          <node id="GanondorfRig_R_UPPER_ARM" name="R_UPPER_ARM" sid="R_UPPER_ARM" type="JOINT">
+                            <matrix sid="transform">1 0 0 0 0 1 0 -0.12 0 0 1 0.00999999 0 0 0 1</matrix>
+                            <extra>
+                              <technique profile="blender">
+                                <layer sid="layer" type="string">0</layer>
+                                <tip_x sid="tip_x" type="float">0</tip_x>
+                                <tip_y sid="tip_y" type="float">0.02988582</tip_y>
+                                <tip_z sid="tip_z" type="float">0.002614617</tip_z>
+                              </technique>
+                            </extra>
+                          </node>
+                          <node id="GanondorfRig_mElbowRight" name="mElbowRight" sid="mElbowRight" type="JOINT">
+                            <matrix sid="transform">1 0 0 0 0 1 0 -0.248 0 0 1 0 0 0 0 1</matrix>
+                            <node id="GanondorfRig_R_LOWER_ARM" name="R_LOWER_ARM" sid="R_LOWER_ARM" type="JOINT">
+                              <matrix sid="transform">1 0 0 0 0 1 0 -0.1 0 0 1 0 0 0 0 1</matrix>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02995884</tip_y>
+                                  <tip_z sid="tip_z" type="float">0.001570105</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <node id="GanondorfRig_mWristRight" name="mWristRight" sid="mWristRight" type="JOINT">
+                              <matrix sid="transform">1 0 0 0 0 1 0 -0.205 0 0 1 0 0 0 0 1</matrix>
+                              <node id="GanondorfRig_R_HAND" name="R_HAND" sid="R_HAND" type="JOINT">
+                                <matrix sid="transform">0.9999999 7.567e-10 9.31323e-10 0.009999998 -1.41154e-8 0.9999999 -3.72529e-9 -0.05000001 -9.31323e-10 -3.72529e-9 1 0 0 0 0 1</matrix>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <roll sid="roll" type="float">0.004581928</roll>
+                                    <tip_x sid="tip_x" type="float">-0.005202293</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02950376</tip_y>
+                                    <tip_z sid="tip_z" type="float">0.001570105</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <node id="GanondorfRig_mHandMiddle1Right" name="mHandMiddle1Right" sid="mHandMiddle1Right" type="JOINT">
+                                <matrix sid="transform">1 0 0 0.013 0 1 0 -0.101 0 0 1 0.01499999 0 0 0 1</matrix>
+                                <node id="GanondorfRig_mHandMiddle2Right" name="mHandMiddle2Right" sid="mHandMiddle2Right" type="JOINT">
+                                  <matrix sid="transform">1 0 0 -0.001 0 1 0 -0.04000002 0 0 1 -0.006000042 0 0 0 1</matrix>
+                                  <node id="GanondorfRig_mHandMiddle3Right" name="mHandMiddle3Right" sid="mHandMiddle3Right" type="JOINT">
+                                    <matrix sid="transform">1 0 0 -0.001 0 1 0 -0.04899997 0 0 1 -0.008000016 0 0 0 1</matrix>
+                                    <extra>
+                                      <technique profile="blender">
+                                        <layer sid="layer" type="string">0</layer>
+                                        <tip_x sid="tip_x" type="float">0</tip_x>
+                                        <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                        <tip_z sid="tip_z" type="float">0</tip_z>
+                                      </technique>
+                                    </extra>
+                                  </node>
+                                  <extra>
+                                    <technique profile="blender">
+                                      <layer sid="layer" type="string">0</layer>
+                                      <tip_x sid="tip_x" type="float">0</tip_x>
+                                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                      <tip_z sid="tip_z" type="float">0</tip_z>
+                                    </technique>
+                                  </extra>
+                                </node>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <node id="GanondorfRig_mHandIndex1Right" name="mHandIndex1Right" sid="mHandIndex1Right" type="JOINT">
+                                <matrix sid="transform">1 0 0 0.038 0 1 0 -0.097 0 0 1 0.01499999 0 0 0 1</matrix>
+                                <node id="GanondorfRig_mHandIndex2Right" name="mHandIndex2Right" sid="mHandIndex2Right" type="JOINT">
+                                  <matrix sid="transform">1 0 0 0.017 0 1 0 -0.03600001 0 0 1 -0.006000042 0 0 0 1</matrix>
+                                  <node id="GanondorfRig_mHandIndex3Right" name="mHandIndex3Right" sid="mHandIndex3Right" type="JOINT">
+                                    <matrix sid="transform">1 0 0 0.014 0 1 0 -0.03200001 0 0 1 -0.005999923 0 0 0 1</matrix>
+                                    <extra>
+                                      <technique profile="blender">
+                                        <layer sid="layer" type="string">0</layer>
+                                        <tip_x sid="tip_x" type="float">0</tip_x>
+                                        <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                        <tip_z sid="tip_z" type="float">0</tip_z>
+                                      </technique>
+                                    </extra>
+                                  </node>
+                                  <extra>
+                                    <technique profile="blender">
+                                      <layer sid="layer" type="string">0</layer>
+                                      <tip_x sid="tip_x" type="float">0</tip_x>
+                                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                      <tip_z sid="tip_z" type="float">0</tip_z>
+                                    </technique>
+                                  </extra>
+                                </node>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <node id="GanondorfRig_mHandRing1Right" name="mHandRing1Right" sid="mHandRing1Right" type="JOINT">
+                                <matrix sid="transform">1 0 0 -0.01 0 1 0 -0.09900004 0 0 1 0.008999944 0 0 0 1</matrix>
+                                <node id="GanondorfRig_mHandRing2Right" name="mHandRing2Right" sid="mHandRing2Right" type="JOINT">
+                                  <matrix sid="transform">1 0 0 -0.013 0 1 0 -0.03799999 0 0 1 -0.008000016 0 0 0 1</matrix>
+                                  <node id="GanondorfRig_mHandRing3Right" name="mHandRing3Right" sid="mHandRing3Right" type="JOINT">
+                                    <matrix sid="transform">1 0 0 -0.013 0 1 0 -0.04000002 0 0 1 -0.008999944 0 0 0 1</matrix>
+                                    <extra>
+                                      <technique profile="blender">
+                                        <layer sid="layer" type="string">0</layer>
+                                        <tip_x sid="tip_x" type="float">0</tip_x>
+                                        <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                        <tip_z sid="tip_z" type="float">0</tip_z>
+                                      </technique>
+                                    </extra>
+                                  </node>
+                                  <extra>
+                                    <technique profile="blender">
+                                      <layer sid="layer" type="string">0</layer>
+                                      <tip_x sid="tip_x" type="float">0</tip_x>
+                                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                      <tip_z sid="tip_z" type="float">0</tip_z>
+                                    </technique>
+                                  </extra>
+                                </node>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <node id="GanondorfRig_mHandPinky1Right" name="mHandPinky1Right" sid="mHandPinky1Right" type="JOINT">
+                                <matrix sid="transform">1 0 0 -0.031 0 1 0 -0.09500003 0 0 1 0.003000021 0 0 0 1</matrix>
+                                <node id="GanondorfRig_mHandPinky2Right" name="mHandPinky2Right" sid="mHandPinky2Right" type="JOINT">
+                                  <matrix sid="transform">1 0 0 -0.024 0 1 0 -0.02499998 0 0 1 -0.006000042 0 0 0 1</matrix>
+                                  <node id="GanondorfRig_mHandPinky3Right" name="mHandPinky3Right" sid="mHandPinky3Right" type="JOINT">
+                                    <matrix sid="transform">1 0 0 -0.015 0 1 0 -0.01800001 0 0 1 -0.003999949 0 0 0 1</matrix>
+                                    <extra>
+                                      <technique profile="blender">
+                                        <layer sid="layer" type="string">0</layer>
+                                        <tip_x sid="tip_x" type="float">0</tip_x>
+                                        <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                        <tip_z sid="tip_z" type="float">0</tip_z>
+                                      </technique>
+                                    </extra>
+                                  </node>
+                                  <extra>
+                                    <technique profile="blender">
+                                      <layer sid="layer" type="string">0</layer>
+                                      <tip_x sid="tip_x" type="float">0</tip_x>
+                                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                      <tip_z sid="tip_z" type="float">0</tip_z>
+                                    </technique>
+                                  </extra>
+                                </node>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <node id="GanondorfRig_mHandThumb1Right" name="mHandThumb1Right" sid="mHandThumb1Right" type="JOINT">
+                                <matrix sid="transform">1 0 0 0.031 0 1 0 -0.02600002 0 0 1 0.003999949 0 0 0 1</matrix>
+                                <node id="GanondorfRig_mHandThumb2Right" name="mHandThumb2Right" sid="mHandThumb2Right" type="JOINT">
+                                  <matrix sid="transform">1 0 0 0.028 0 1 0 -0.03200001 0 0 1 -9.99928e-4 0 0 0 1</matrix>
+                                  <node id="GanondorfRig_mHandThumb3Right" name="mHandThumb3Right" sid="mHandThumb3Right" type="JOINT">
+                                    <matrix sid="transform">1 0 0 0.023 0 1 0 -0.03099996 0 0 1 -0.001000047 0 0 0 1</matrix>
+                                    <extra>
+                                      <technique profile="blender">
+                                        <layer sid="layer" type="string">0</layer>
+                                        <tip_x sid="tip_x" type="float">0</tip_x>
+                                        <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                        <tip_z sid="tip_z" type="float">0</tip_z>
+                                      </technique>
+                                    </extra>
+                                  </node>
+                                  <extra>
+                                    <technique profile="blender">
+                                      <layer sid="layer" type="string">0</layer>
+                                      <tip_x sid="tip_x" type="float">0</tip_x>
+                                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                      <tip_z sid="tip_z" type="float">0</tip_z>
+                                    </technique>
+                                  </extra>
+                                </node>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <extra>
+                              <technique profile="blender">
+                                <layer sid="layer" type="string">0</layer>
+                                <tip_x sid="tip_x" type="float">0</tip_x>
+                                <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                <tip_z sid="tip_z" type="float">0</tip_z>
+                              </technique>
+                            </extra>
+                          </node>
+                          <extra>
+                            <technique profile="blender">
+                              <layer sid="layer" type="string">0</layer>
+                              <tip_x sid="tip_x" type="float">0</tip_x>
+                              <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                              <tip_z sid="tip_z" type="float">0</tip_z>
+                            </technique>
+                          </extra>
+                        </node>
+                        <extra>
+                          <technique profile="blender">
+                            <layer sid="layer" type="string">0</layer>
+                            <tip_x sid="tip_x" type="float">0</tip_x>
+                            <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                            <tip_z sid="tip_z" type="float">0</tip_z>
+                          </technique>
+                        </extra>
+                      </node>
+                      <node id="GanondorfRig_mWingsRoot" name="mWingsRoot" sid="mWingsRoot" type="JOINT">
+                        <matrix sid="transform">1 0 0 -0.014 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                        <node id="GanondorfRig_mWing1Left" name="mWing1Left" sid="mWing1Left" type="JOINT">
+                          <matrix sid="transform">1 0 0 -0.09900001 0 1 0 0.105 0 0 1 0.181 0 0 0 1</matrix>
+                          <node id="GanondorfRig_mWing2Left" name="mWing2Left" sid="mWing2Left" type="JOINT">
+                            <matrix sid="transform">1 0 0 -0.168 0 1 0 0.169 0 0 1 0.06700003 0 0 0 1</matrix>
+                            <node id="GanondorfRig_mWing3Left" name="mWing3Left" sid="mWing3Left" type="JOINT">
+                              <matrix sid="transform">1 0 0 -0.181 0 1 0 0.183 0 0 1 0 0 0 0 1</matrix>
+                              <node id="GanondorfRig_mWing4Left" name="mWing4Left" sid="mWing4Left" type="JOINT">
+                                <matrix sid="transform">1 0 0 -0.171 0 1 0 0.173 0 0 1 0 0 0 0 1</matrix>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <node id="GanondorfRig_mWing4FanLeft" name="mWing4FanLeft" sid="mWing4FanLeft" type="JOINT">
+                                <matrix sid="transform">1 0 0 -0.171 0 1 0 0.173 0 0 1 0 0 0 0 1</matrix>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <extra>
+                              <technique profile="blender">
+                                <layer sid="layer" type="string">0</layer>
+                                <tip_x sid="tip_x" type="float">0</tip_x>
+                                <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                <tip_z sid="tip_z" type="float">0</tip_z>
+                              </technique>
+                            </extra>
+                          </node>
+                          <extra>
+                            <technique profile="blender">
+                              <layer sid="layer" type="string">0</layer>
+                              <tip_x sid="tip_x" type="float">0</tip_x>
+                              <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                              <tip_z sid="tip_z" type="float">0</tip_z>
+                            </technique>
+                          </extra>
+                        </node>
+                        <node id="GanondorfRig_mWing1Right" name="mWing1Right" sid="mWing1Right" type="JOINT">
+                          <matrix sid="transform">1 0 0 -0.09900001 0 1 0 -0.105 0 0 1 0.181 0 0 0 1</matrix>
+                          <node id="GanondorfRig_mWing2Right" name="mWing2Right" sid="mWing2Right" type="JOINT">
+                            <matrix sid="transform">1 0 0 -0.168 0 1 0 -0.169 0 0 1 0.06700003 0 0 0 1</matrix>
+                            <node id="GanondorfRig_mWing3Right" name="mWing3Right" sid="mWing3Right" type="JOINT">
+                              <matrix sid="transform">1 0 0 -0.181 0 1 0 -0.183 0 0 1 0 0 0 0 1</matrix>
+                              <node id="GanondorfRig_mWing4Right" name="mWing4Right" sid="mWing4Right" type="JOINT">
+                                <matrix sid="transform">1 0 0 -0.171 0 1 0 -0.173 0 0 1 0 0 0 0 1</matrix>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <node id="GanondorfRig_mWing4FanRight" name="mWing4FanRight" sid="mWing4FanRight" type="JOINT">
+                                <matrix sid="transform">1 0 0 -0.171 0 1 0 -0.173 0 0 1 0 0 0 0 1</matrix>
+                                <extra>
+                                  <technique profile="blender">
+                                    <layer sid="layer" type="string">0</layer>
+                                    <tip_x sid="tip_x" type="float">0</tip_x>
+                                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                    <tip_z sid="tip_z" type="float">0</tip_z>
+                                  </technique>
+                                </extra>
+                              </node>
+                              <extra>
+                                <technique profile="blender">
+                                  <layer sid="layer" type="string">0</layer>
+                                  <tip_x sid="tip_x" type="float">0</tip_x>
+                                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                  <tip_z sid="tip_z" type="float">0</tip_z>
+                                </technique>
+                              </extra>
+                            </node>
+                            <extra>
+                              <technique profile="blender">
+                                <layer sid="layer" type="string">0</layer>
+                                <tip_x sid="tip_x" type="float">0</tip_x>
+                                <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                                <tip_z sid="tip_z" type="float">0</tip_z>
+                              </technique>
+                            </extra>
+                          </node>
+                          <extra>
+                            <technique profile="blender">
+                              <layer sid="layer" type="string">0</layer>
+                              <tip_x sid="tip_x" type="float">0</tip_x>
+                              <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                              <tip_z sid="tip_z" type="float">0</tip_z>
+                            </technique>
+                          </extra>
+                        </node>
+                        <extra>
+                          <technique profile="blender">
+                            <layer sid="layer" type="string">0</layer>
+                            <tip_x sid="tip_x" type="float">0</tip_x>
+                            <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                            <tip_z sid="tip_z" type="float">0</tip_z>
+                          </technique>
+                        </extra>
+                      </node>
+                      <extra>
+                        <technique profile="blender">
+                          <layer sid="layer" type="string">0</layer>
+                          <tip_x sid="tip_x" type="float">0</tip_x>
+                          <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                          <tip_z sid="tip_z" type="float">0</tip_z>
+                        </technique>
+                      </extra>
+                    </node>
+                    <extra>
+                      <technique profile="blender">
+                        <layer sid="layer" type="string">0</layer>
+                        <tip_x sid="tip_x" type="float">0</tip_x>
+                        <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                        <tip_z sid="tip_z" type="float">0</tip_z>
+                      </technique>
+                    </extra>
+                  </node>
+                  <extra>
+                    <technique profile="blender">
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                      <tip_z sid="tip_z" type="float">0</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <layer sid="layer" type="string">0</layer>
+                    <tip_x sid="tip_x" type="float">0</tip_x>
+                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                    <tip_z sid="tip_z" type="float">0</tip_z>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <layer sid="layer" type="string">0</layer>
+                  <tip_x sid="tip_x" type="float">0</tip_x>
+                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                  <tip_z sid="tip_z" type="float">0</tip_z>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+                <tip_x sid="tip_x" type="float">0</tip_x>
+                <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                <tip_z sid="tip_z" type="float">0</tip_z>
+              </technique>
+            </extra>
+          </node>
+          <node id="GanondorfRig_mHipRight" name="mHipRight" sid="mHipRight" type="JOINT">
+            <matrix sid="transform">1 0 0 0.034 0 1 0 -0.129 0 0 1 -0.04100001 0 0 0 1</matrix>
+            <node id="GanondorfRig_R_UPPER_LEG" name="R_UPPER_LEG" sid="R_UPPER_LEG" type="JOINT">
+              <matrix sid="transform">1 0 0 -0.02 0 1 0 0.04999999 0 0 1 -0.22 0 0 0 1</matrix>
+              <extra>
+                <technique profile="blender">
+                  <layer sid="layer" type="string">0</layer>
+                  <tip_x sid="tip_x" type="float">0</tip_x>
+                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                  <tip_z sid="tip_z" type="float">0</tip_z>
+                </technique>
+              </extra>
+            </node>
+            <node id="GanondorfRig_mKneeRight" name="mKneeRight" sid="mKneeRight" type="JOINT">
+              <matrix sid="transform">1 0 0 -0.001000002 0 1 0 0.04899999 0 0 1 -0.491 0 0 0 1</matrix>
+              <node id="GanondorfRig_R_LOWER_LEG" name="R_LOWER_LEG" sid="R_LOWER_LEG" type="JOINT">
+                <matrix sid="transform">1 0 0 -0.02 0 1 0 0 0 0 1 -0.2 0 0 0 1</matrix>
+                <extra>
+                  <technique profile="blender">
+                    <layer sid="layer" type="string">0</layer>
+                    <tip_x sid="tip_x" type="float">0</tip_x>
+                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                    <tip_z sid="tip_z" type="float">0</tip_z>
+                  </technique>
+                </extra>
+              </node>
+              <node id="GanondorfRig_mAnkleRight" name="mAnkleRight" sid="mAnkleRight" type="JOINT">
+                <matrix sid="transform">1 0 0 -0.029 0 1 0 0 0 0 1 -0.468 0 0 0 1</matrix>
+                <node id="GanondorfRig_R_FOOT" name="R_FOOT" sid="R_FOOT" type="JOINT">
+                  <matrix sid="transform">1 0 1.49012e-8 0.077 0 1 0 0 -1.49012e-8 0 1 -0.041 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <layer sid="layer" type="string">0</layer>
+                      <roll sid="roll" type="float">0.1745329</roll>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                      <tip_z sid="tip_z" type="float">0</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <node id="GanondorfRig_mFootRight" name="mFootRight" sid="mFootRight" type="JOINT">
+                  <matrix sid="transform">1 0 0 0.112 0 1 0 0 0 0 1 -0.061 0 0 0 1</matrix>
+                  <node id="GanondorfRig_mToeRight" name="mToeRight" sid="mToeRight" type="JOINT">
+                    <matrix sid="transform">1 0 0 0.109 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                    <extra>
+                      <technique profile="blender">
+                        <layer sid="layer" type="string">0</layer>
+                        <tip_x sid="tip_x" type="float">0</tip_x>
+                        <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                        <tip_z sid="tip_z" type="float">0</tip_z>
+                      </technique>
+                    </extra>
+                  </node>
+                  <extra>
+                    <technique profile="blender">
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                      <tip_z sid="tip_z" type="float">0</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <layer sid="layer" type="string">0</layer>
+                    <tip_x sid="tip_x" type="float">0</tip_x>
+                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                    <tip_z sid="tip_z" type="float">0</tip_z>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <layer sid="layer" type="string">0</layer>
+                  <tip_x sid="tip_x" type="float">0</tip_x>
+                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                  <tip_z sid="tip_z" type="float">0</tip_z>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+                <tip_x sid="tip_x" type="float">0</tip_x>
+                <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                <tip_z sid="tip_z" type="float">0</tip_z>
+              </technique>
+            </extra>
+          </node>
+          <node id="GanondorfRig_mHipLeft" name="mHipLeft" sid="mHipLeft" type="JOINT">
+            <matrix sid="transform">1 0 0 0.034 0 1 0 0.127 0 0 1 -0.04100001 0 0 0 1</matrix>
+            <node id="GanondorfRig_L_UPPER_LEG" name="L_UPPER_LEG" sid="L_UPPER_LEG" type="JOINT">
+              <matrix sid="transform">1 0 0 -0.02 0 1 0 -0.05 0 0 1 -0.22 0 0 0 1</matrix>
+              <extra>
+                <technique profile="blender">
+                  <layer sid="layer" type="string">0</layer>
+                  <tip_x sid="tip_x" type="float">0</tip_x>
+                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                  <tip_z sid="tip_z" type="float">0</tip_z>
+                </technique>
+              </extra>
+            </node>
+            <node id="GanondorfRig_mKneeLeft" name="mKneeLeft" sid="mKneeLeft" type="JOINT">
+              <matrix sid="transform">1 0 0 -0.001000002 0 1 0 -0.046 0 0 1 -0.491 0 0 0 1</matrix>
+              <node id="GanondorfRig_L_LOWER_LEG" name="L_LOWER_LEG" sid="L_LOWER_LEG" type="JOINT">
+                <matrix sid="transform">1 0 0 -0.02 0 1 0 0 0 0 1 -0.2 0 0 0 1</matrix>
+                <extra>
+                  <technique profile="blender">
+                    <layer sid="layer" type="string">0</layer>
+                    <tip_x sid="tip_x" type="float">0</tip_x>
+                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                    <tip_z sid="tip_z" type="float">0</tip_z>
+                  </technique>
+                </extra>
+              </node>
+              <node id="GanondorfRig_mAnkleLeft" name="mAnkleLeft" sid="mAnkleLeft" type="JOINT">
+                <matrix sid="transform">1 0 0 -0.029 0 1 0 0.001000002 0 0 1 -0.468 0 0 0 1</matrix>
+                <node id="GanondorfRig_L_FOOT" name="L_FOOT" sid="L_FOOT" type="JOINT">
+                  <matrix sid="transform">1 0 1.49012e-8 0.077 0 1 0 0 -1.49012e-8 0 1 -0.041 0 0 0 1</matrix>
+                  <extra>
+                    <technique profile="blender">
+                      <layer sid="layer" type="string">0</layer>
+                      <roll sid="roll" type="float">0.1745329</roll>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                      <tip_z sid="tip_z" type="float">0</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <node id="GanondorfRig_mFootLeft" name="mFootLeft" sid="mFootLeft" type="JOINT">
+                  <matrix sid="transform">1 0 0 0.112 0 1 0 0 0 0 1 -0.061 0 0 0 1</matrix>
+                  <node id="GanondorfRig_mToeLeft" name="mToeLeft" sid="mToeLeft" type="JOINT">
+                    <matrix sid="transform">1 0 0 0.109 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                    <extra>
+                      <technique profile="blender">
+                        <layer sid="layer" type="string">0</layer>
+                        <tip_x sid="tip_x" type="float">0</tip_x>
+                        <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                        <tip_z sid="tip_z" type="float">0</tip_z>
+                      </technique>
+                    </extra>
+                  </node>
+                  <extra>
+                    <technique profile="blender">
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                      <tip_z sid="tip_z" type="float">0</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <layer sid="layer" type="string">0</layer>
+                    <tip_x sid="tip_x" type="float">0</tip_x>
+                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                    <tip_z sid="tip_z" type="float">0</tip_z>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <layer sid="layer" type="string">0</layer>
+                  <tip_x sid="tip_x" type="float">0</tip_x>
+                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                  <tip_z sid="tip_z" type="float">0</tip_z>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+                <tip_x sid="tip_x" type="float">0</tip_x>
+                <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                <tip_z sid="tip_z" type="float">0</tip_z>
+              </technique>
+            </extra>
+          </node>
+          <node id="GanondorfRig_mTail1" name="mTail1" sid="mTail1" type="JOINT">
+            <matrix sid="transform">1 0 0 -0.116 0 1 0 0 0 0 1 0.04699993 0 0 0 1</matrix>
+            <node id="GanondorfRig_mTail2" name="mTail2" sid="mTail2" type="JOINT">
+              <matrix sid="transform">1 0 0 -0.197 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+              <node id="GanondorfRig_mTail3" name="mTail3" sid="mTail3" type="JOINT">
+                <matrix sid="transform">1 0 0 -0.168 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                <node id="GanondorfRig_mTail4" name="mTail4" sid="mTail4" type="JOINT">
+                  <matrix sid="transform">1 0 0 -0.142 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                  <node id="GanondorfRig_mTail5" name="mTail5" sid="mTail5" type="JOINT">
+                    <matrix sid="transform">1 0 0 -0.112 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                    <node id="GanondorfRig_mTail6" name="mTail6" sid="mTail6" type="JOINT">
+                      <matrix sid="transform">1 0 0 -0.09399998 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+                      <extra>
+                        <technique profile="blender">
+                          <layer sid="layer" type="string">0</layer>
+                          <tip_x sid="tip_x" type="float">0</tip_x>
+                          <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                          <tip_z sid="tip_z" type="float">0</tip_z>
+                        </technique>
+                      </extra>
+                    </node>
+                    <extra>
+                      <technique profile="blender">
+                        <layer sid="layer" type="string">0</layer>
+                        <tip_x sid="tip_x" type="float">0</tip_x>
+                        <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                        <tip_z sid="tip_z" type="float">0</tip_z>
+                      </technique>
+                    </extra>
+                  </node>
+                  <extra>
+                    <technique profile="blender">
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                      <tip_z sid="tip_z" type="float">0</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <layer sid="layer" type="string">0</layer>
+                    <tip_x sid="tip_x" type="float">0</tip_x>
+                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                    <tip_z sid="tip_z" type="float">0</tip_z>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <layer sid="layer" type="string">0</layer>
+                  <tip_x sid="tip_x" type="float">0</tip_x>
+                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                  <tip_z sid="tip_z" type="float">0</tip_z>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+                <tip_x sid="tip_x" type="float">0</tip_x>
+                <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                <tip_z sid="tip_z" type="float">0</tip_z>
+              </technique>
+            </extra>
+          </node>
+          <node id="GanondorfRig_mGroin" name="mGroin" sid="mGroin" type="JOINT">
+            <matrix sid="transform">1 0 0 0.064 0 1 0 0 0 0 1 -0.097 0 0 0 1</matrix>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+                <tip_x sid="tip_x" type="float">0</tip_x>
+                <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                <tip_z sid="tip_z" type="float">0</tip_z>
+              </technique>
+            </extra>
+          </node>
+          <node id="GanondorfRig_mHindLimbsRoot" name="mHindLimbsRoot" sid="mHindLimbsRoot" type="JOINT">
+            <matrix sid="transform">1 0 0 -0.2 0 1 0 0 0 0 1 0.08399999 0 0 0 1</matrix>
+            <node id="GanondorfRig_mHindLimb1Left" name="mHindLimb1Left" sid="mHindLimb1Left" type="JOINT">
+              <matrix sid="transform">1 0 0 -0.204 0 1 0 0.129 0 0 1 -0.125 0 0 0 1</matrix>
+              <node id="GanondorfRig_mHindLimb2Left" name="mHindLimb2Left" sid="mHindLimb2Left" type="JOINT">
+                <matrix sid="transform">1 0 0 0.002000004 0 1 0 -0.046 0 0 1 -0.491 0 0 0 1</matrix>
+                <node id="GanondorfRig_mHindLimb3Left" name="mHindLimb3Left" sid="mHindLimb3Left" type="JOINT">
+                  <matrix sid="transform">1 0 0 -0.03 0 1 0 -0.002999999 0 0 1 -0.468 0 0 0 1</matrix>
+                  <node id="GanondorfRig_mHindLimb4Left" name="mHindLimb4Left" sid="mHindLimb4Left" type="JOINT">
+                    <matrix sid="transform">1 0 0 0.112 0 1 0 0 0 0 1 -0.061 0 0 0 1</matrix>
+                    <extra>
+                      <technique profile="blender">
+                        <layer sid="layer" type="string">0</layer>
+                        <tip_x sid="tip_x" type="float">0</tip_x>
+                        <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                        <tip_z sid="tip_z" type="float">0</tip_z>
+                      </technique>
+                    </extra>
+                  </node>
+                  <extra>
+                    <technique profile="blender">
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                      <tip_z sid="tip_z" type="float">0</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <layer sid="layer" type="string">0</layer>
+                    <tip_x sid="tip_x" type="float">0</tip_x>
+                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                    <tip_z sid="tip_z" type="float">0</tip_z>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <layer sid="layer" type="string">0</layer>
+                  <tip_x sid="tip_x" type="float">0</tip_x>
+                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                  <tip_z sid="tip_z" type="float">0</tip_z>
+                </technique>
+              </extra>
+            </node>
+            <node id="GanondorfRig_mHindLimb1Right" name="mHindLimb1Right" sid="mHindLimb1Right" type="JOINT">
+              <matrix sid="transform">1 0 0 -0.204 0 1 0 -0.129 0 0 1 -0.125 0 0 0 1</matrix>
+              <node id="GanondorfRig_mHindLimb2Right" name="mHindLimb2Right" sid="mHindLimb2Right" type="JOINT">
+                <matrix sid="transform">1 0 0 0.002000004 0 1 0 0.046 0 0 1 -0.491 0 0 0 1</matrix>
+                <node id="GanondorfRig_mHindLimb3Right" name="mHindLimb3Right" sid="mHindLimb3Right" type="JOINT">
+                  <matrix sid="transform">1 0 0 -0.03 0 1 0 0.002999999 0 0 1 -0.468 0 0 0 1</matrix>
+                  <node id="GanondorfRig_mHindLimb4Right" name="mHindLimb4Right" sid="mHindLimb4Right" type="JOINT">
+                    <matrix sid="transform">1 0 0 0.112 0 1 0 0 0 0 1 -0.061 0 0 0 1</matrix>
+                    <extra>
+                      <technique profile="blender">
+                        <layer sid="layer" type="string">0</layer>
+                        <tip_x sid="tip_x" type="float">0</tip_x>
+                        <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                        <tip_z sid="tip_z" type="float">0</tip_z>
+                      </technique>
+                    </extra>
+                  </node>
+                  <extra>
+                    <technique profile="blender">
+                      <layer sid="layer" type="string">0</layer>
+                      <tip_x sid="tip_x" type="float">0</tip_x>
+                      <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                      <tip_z sid="tip_z" type="float">0</tip_z>
+                    </technique>
+                  </extra>
+                </node>
+                <extra>
+                  <technique profile="blender">
+                    <layer sid="layer" type="string">0</layer>
+                    <tip_x sid="tip_x" type="float">0</tip_x>
+                    <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                    <tip_z sid="tip_z" type="float">0</tip_z>
+                  </technique>
+                </extra>
+              </node>
+              <extra>
+                <technique profile="blender">
+                  <layer sid="layer" type="string">0</layer>
+                  <tip_x sid="tip_x" type="float">0</tip_x>
+                  <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                  <tip_z sid="tip_z" type="float">0</tip_z>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">0</layer>
+                <tip_x sid="tip_x" type="float">0</tip_x>
+                <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+                <tip_z sid="tip_z" type="float">0</tip_z>
+              </technique>
+            </extra>
+          </node>
+          <extra>
+            <technique profile="blender">
+              <layer sid="layer" type="string">0</layer>
+              <tip_x sid="tip_x" type="float">0</tip_x>
+              <tip_y sid="tip_y" type="float">0.02999997</tip_y>
+              <tip_z sid="tip_z" type="float">0</tip_z>
+            </technique>
+          </extra>
+        </node>
+        <node id="GanondorfAnkletRight_LOD0" name="GanondorfAnkletRight_LOD0" type="NODE">
+          <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+          <instance_controller url="#GanondorfRig_GanondorfAnkletRight_LOD0-skin">
+            <skeleton>#GanondorfRig_mPelvis</skeleton>
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="LegWrap-material" target="#LegWrap-material">
+                  <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+                </instance_material>
+              </technique_common>
+            </bind_material>
+          </instance_controller>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

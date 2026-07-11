@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 3.6.19 commit date:2024-12-16, commit time:12:51, hash:56679ff9b2b2</authoring_tool>
+    </contributor>
+    <created>2026-07-11T11:09:13</created>
+    <modified>2026-07-11T11:09:13</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects/>
+  <library_images/>
+  <library_geometries>
+    <geometry id="default_physics_shape-mesh" name="default_physics_shape">
+      <mesh>
+        <source id="default_physics_shape-mesh-positions">
+          <float_array id="default_physics_shape-mesh-positions-array" count="24">-0.2 -0.2 0.6 -0.2 -0.2 1.4 -0.2 0.2 0.6 -0.2 0.2 1.4 0.2 -0.2 0.6 0.2 -0.2 1.4 0.2 0.2 0.6 0.2 0.2 1.4</float_array>
+          <technique_common>
+            <accessor source="#default_physics_shape-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="default_physics_shape-mesh-normals">
+          <float_array id="default_physics_shape-mesh-normals-array" count="18">-1 0 0 1 0 0 0 -1 0 0 1 0 0 0 -1 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#default_physics_shape-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="default_physics_shape-mesh-vertices">
+          <input semantic="POSITION" source="#default_physics_shape-mesh-positions"/>
+        </vertices>
+        <triangles count="12">
+          <input semantic="VERTEX" source="#default_physics_shape-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#default_physics_shape-mesh-normals" offset="1"/>
+          <p>1 0 2 0 0 0 6 1 5 1 4 1 4 2 1 2 0 2 3 3 6 3 2 3 2 4 4 4 0 4 5 5 3 5 1 5 1 0 3 0 2 0 6 1 7 1 5 1 4 2 5 2 1 2 3 3 7 3 6 3 2 4 6 4 4 4 5 5 7 5 3 5</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="default_physics_shape" name="default_physics_shape" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#default_physics_shape-mesh" name="default_physics_shape"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
