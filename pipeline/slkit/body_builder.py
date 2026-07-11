@@ -301,6 +301,22 @@ def build_body(resources_dir: str):
     bpy.ops.object.shade_smooth()
     rigging.cleanup_weights(body)  # re-limit after interpolation
 
+    # SL allows max 21844 tris per material; the subdivided upper body
+    # exceeds it, so the arms/hands move to a second slot that in-world is
+    # simply set to the same BAKED_UPPER bake channel (disjoint UV regions,
+    # zero visual difference).
+    mat2 = bpy.data.materials.get("BAKED_UPPER2") or bpy.data.materials.new("BAKED_UPPER2")
+    body.data.materials.append(mat2)
+    slot_names = [m.name for m in body.data.materials]
+    upper_i = slot_names.index("BAKED_UPPER")
+    upper2_i = slot_names.index("BAKED_UPPER2")
+    moved = 0
+    for p in body.data.polygons:
+        if p.material_index == upper_i and abs(p.center.y) > 0.30:
+            p.material_index = upper2_i
+            moved += 1
+    print(f"[body] moved {moved} arm/hand tris to BAKED_UPPER2 slot")
+
     bl_armature.bind_mesh(body, arm)
 
     # --- eyes ------------------------------------------------------------------

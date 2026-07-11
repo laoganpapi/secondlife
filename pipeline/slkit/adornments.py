@@ -279,7 +279,7 @@ def build_circlet(body, sk):
     _assign_single_material(band, "Gold")
     parts.append(band)
 
-    jewel = add_uv_sphere("CircletJewel", Vector((0.118, 0.0, 1.788)), 0.0135, squash=1.25)
+    jewel = add_uv_sphere("CircletJewel", Vector((0.1225, 0.0, 1.788)), 0.0135, squash=1.25)
     _assign_single_material(jewel, "Gem")
     parts.append(jewel)
 

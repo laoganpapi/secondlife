@@ -116,7 +116,9 @@ def shell_from_body(
     bm.to_mesh(new_mesh)
     bm.free()
 
-    # materials
+    # materials -- capture original indices BEFORE clearing slots
+    # (materials.clear() resets every polygon's material_index to 0)
+    orig_idx = [p.material_index for p in new_mesh.polygons]
     new_mesh.materials.clear()
     mats = {}
     for mn in material_names:
@@ -127,9 +129,8 @@ def shell_from_body(
         for p in new_mesh.polygons:
             p.material_index = 0
     else:
-        # need original slot names per polygon: they were copied with mesh
-        for p in new_mesh.polygons:
-            src = src_slot_names[p.material_index] if p.material_index < len(src_slot_names) else ""
+        for p, oi in zip(new_mesh.polygons, orig_idx):
+            src = src_slot_names[oi] if oi < len(src_slot_names) else ""
             mn = material_of(Vector(p.center), src)
             p.material_index = mats.get(mn, 0)
 
