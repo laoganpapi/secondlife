@@ -219,9 +219,11 @@ def build_sash(body, sk):
         return z_min < c.z < 1.15
 
     def off(co: Vector, n: Vector) -> float:
-        # thicker in front where layers wrap
-        f = _s((co.x - 0.0) / 0.12)
-        return 0.022 + 0.010 * f
+        # thick knotted wrap in front; tucks THIN at the back so it sits
+        # under the robe's back panel (robe offset ~0.022) instead of
+        # poking through it
+        f = _s((co.x + 0.06) / 0.16)
+        return 0.010 + 0.024 * f
 
     obj = shell_from_body(body, "GanondorfSash", keep, off, ["Sash"], None)
 
@@ -261,16 +263,19 @@ def build_pants(body, sk):
         return 0.14 < c.z < 1.06 and abs(c.y) < 0.30
 
     def off(co: Vector, n: Vector) -> float:
-        base = 0.014
+        # keep a firm minimum standoff everywhere so the muscular legs
+        # never poke through the cloth
+        base = 0.020
         # bagginess peaks at mid-thigh/knee, gathers at ankle
         bag = _s((co.z - 0.20) / 0.30) * _s((0.95 - co.z) / 0.25)
-        base += 0.030 * bag
-        # concave knee hollow: a full offset self-intersects there
-        if n.x < -0.3 and 0.38 < co.z < 0.58:
-            base *= 0.45
+        base += 0.028 * bag
+        # concave back-of-knee: ease the offset a little to limit cloth
+        # self-folding, but never below the safe standoff
+        if n.x < -0.3 and 0.40 < co.z < 0.56:
+            base = max(0.018, base * 0.7)
         # gathered cuff
         if co.z < 0.22:
-            base = 0.008
+            base = 0.012
         return base
 
     obj = shell_from_body(body, "GanondorfPants", keep, off, ["Pants"], None)
