@@ -33,8 +33,7 @@ ITEMS = [
         ("body face 3 (arms/hands)", "skin_upper  (or BAKED_UPPER)"),
     ]),
     ("03", "Hair", "ganondorf_hair", "Skull", [
-        ("face 0 (mane)", "hair  (Alpha masking, cutoff 64, if glitchy)"),
-        ("face 1 (gold tie)", "gold"),
+        ("face 0 (whole mane)", "hair  (Alpha masking, cutoff 64, if glitchy)"),
     ]),
     ("04", "Circlet", "ganondorf_circlet", "Skull", [
         ("face 0 (band)", "gold"),

@@ -159,20 +159,20 @@ def boundary_band(cov: np.ndarray, width: int) -> np.ndarray:
 # palette
 # --------------------------------------------------------------------------
 
-SKIN_BASE = np.array([0.392, 0.435, 0.290])       # gerudo olive-green
-SKIN_SHADOW = np.array([0.253, 0.282, 0.184])
-SKIN_WARM = np.array([0.478, 0.463, 0.298])       # sun-warmed highlights
+SKIN_BASE = np.array([0.302, 0.345, 0.228])       # gerudo olive-green (dark)
+SKIN_SHADOW = np.array([0.184, 0.212, 0.137])
+SKIN_WARM = np.array([0.386, 0.376, 0.243])       # sun-warmed highlights
 LIP = np.array([0.240, 0.168, 0.138])  # dark olive-plum, keeps saturation
 BROW_RED = np.array([0.478, 0.114, 0.055])
-HAIR_DARK = np.array([0.30, 0.045, 0.03])
-HAIR_MID = np.array([0.545, 0.10, 0.05])
-HAIR_HI = np.array([0.75, 0.22, 0.09])
-ROBE_BASE = np.array([0.118, 0.125, 0.104])
-ROBE_WEAVE = np.array([0.165, 0.173, 0.145])
+HAIR_DARK = np.array([0.26, 0.038, 0.026])
+HAIR_MID = np.array([0.50, 0.085, 0.045])
+HAIR_HI = np.array([0.66, 0.17, 0.07])
+ROBE_BASE = np.array([0.086, 0.116, 0.098])       # deep teal-green
+ROBE_WEAVE = np.array([0.128, 0.166, 0.140])
 GOLD = np.array([0.788, 0.596, 0.184])
 GOLD_DARK = np.array([0.478, 0.333, 0.090])
 GEM_RED = np.array([0.62, 0.055, 0.09])
-PANTS_BASE = np.array([0.157, 0.169, 0.141])
+PANTS_BASE = np.array([0.124, 0.138, 0.114])
 SASH_BASE = np.array([0.878, 0.773, 0.686])
 SASH_SHADE = np.array([0.722, 0.573, 0.502])
 LEATHER = np.array([0.357, 0.243, 0.118])
@@ -206,7 +206,8 @@ def paint_skin():
     for ch_i, (mat, slots) in enumerate(channels.items()):
         cov, X, Y, Z, NRM = rasterize(dump, set(slots))
         ao = load_ao(f"{OUT}/bake/ao_GanondorfBody_{mat}.png")
-        ao = np.clip(ao, 0.25, 1.0) ** 0.85
+        # deeper AO floor + steeper curve: carve the musculature
+        ao = np.clip(ao, 0.16, 1.0) ** 1.15
 
         # per-channel noise seeds so head/upper/lower get decorrelated
         # mottle and pore fields (ch_i, not the stale grouping-loop slot)
@@ -254,13 +255,20 @@ def paint_skin():
                 * (X > 0.098) * (AY < 0.030)
             )
             rgb *= 1 - 0.5 * split[..., None]
-            # nose shadow + jaw stubble
+            # jaw beard shadow: red-tinted, densest at the sideburn line
+            # in front of the ears, thinning toward the chin
             stubble = (
                 smooth01((1.70 - Z) / 0.03) * smooth01((Z - 1.628) / 0.012)
                 * smooth01((X - 0.015) / 0.03)
             )
+            burnline = (
+                smooth01((1.76 - Z) / 0.04) * smooth01((Z - 1.63) / 0.03)
+                * smooth01((AY - 0.052) / 0.015) * smooth01((X - 0.02) / 0.025)
+            )
+            beard = np.maximum(stubble * 0.75, burnline)
             stub_noise = fbm(SIZE, octaves=7, seed=91, persistence=0.8)
-            rgb *= 1 - 0.28 * (stubble * stub_noise)[..., None]
+            bmask = (beard * (0.55 + 0.45 * stub_noise))[..., None]
+            rgb = rgb * (1 - 0.45 * bmask) + HAIR_DARK * 0.45 * bmask
             # scalp tint under hair (matches mane so edges vanish); gate by
             # surface normal -- scalp faces point up/back, while the pointed
             # ear tips (which also reach this height) point sideways

@@ -188,38 +188,50 @@ def _join(objs, name):
 
 
 def build_hair(body, sk):
-    """Ganondorf's swept-back red mane gathered into a high back-knot,
-    with long sideburn locks framing the face.
-
-    The mane is a scalp shell whose inflation grows toward the crown-back
-    and converges into the knot; strands come from the texture (aniso
-    gradient painted along the front->back UV direction), not geometry.
+    """Ganondorf's long voluminous red mane: volumized crown with a
+    widow's peak, a full back shell falling past the nape, and thick
+    tapered locks sweeping down to mid-back.  Loose hair (no tie) --
+    the red circlet is a separate attachment, as in the reference art.
     """
-    knot_base = Vector((-0.055, 0.0, 1.885))
 
     def keep(c: Vector) -> bool:
-        # top of the skull, above an arcing hairline:
-        # front hairline high (z>1.795), dropping to 1.755 at the temples
-        # and sweeping to the nape at the back -- but never over the
-        # (pointed, visible) ears
-        if abs(c.y) > 0.072 and c.z < 1.80 and c.x > -0.055:
-            return False  # keep the ears clear
+        ay = abs(c.y)
+        # keep the (pointed, visible) ears and face clear
+        if ay > 0.072 and c.z < 1.80 and c.x > -0.055:
+            return False
+        # widow's peak: a V of hair dipping onto the center forehead
+        if c.x > 0.09 and ay < 0.018 and c.z > 1.772:
+            return True
+        # front hairline high, dropping toward the temples
         if c.x > 0.02:
-            return c.z > 1.795 - 0.05 * _sm((abs(c.y) - 0.03) / 0.05)
+            return c.z > 1.795 - 0.05 * _sm((ay - 0.03) / 0.05)
         if c.x > -0.05:
             return c.z > 1.755
-        return c.z > 1.70
+        # back of the head: shell continues down past the nape
+        return c.z > 1.54 and ay < 0.105
 
     def off(co: Vector, n: Vector) -> float:
-        # teardrop mane: thin at hairline, gathering mass toward the knot
-        toward = 1.0 - min(1.0, (co - knot_base).length / 0.16)
-        up = max(0.0, min(1.0, (co.z - 1.74) / 0.12))
-        return 0.005 + 0.012 * up + 0.016 * _sm(toward)
+        # volume grows from the hairline to the crown and stays thick
+        # all the way down the back curtain
+        up = max(0.0, min(1.0, (co.z - 1.72) / 0.14))
+        back = _sm((-co.x - 0.01) / 0.09)
+        base = 0.008 + 0.026 * up + 0.030 * back
+        # extra crest along the top center (silhouette height)
+        base += 0.014 * _sm(1.0 - abs(co.y) / 0.045) * _sm((co.z - 1.80) / 0.06)
+        return base
 
     from .outfit import shell_from_body
 
     scalp = shell_from_body(body, "HairScalp", keep, off, ["Hair"], None)
-    # swept UVs: u around the head, v hairline->knot (strand direction)
+    # gravity: drag the back shell outward and down so it drapes rather
+    # than hugging the skull/neck
+    for v in scalp.data.vertices:
+        back = _sm((-v.co.x - 0.01) / 0.09)
+        if back > 0.0:
+            drop = _sm((1.92 - v.co.z) / 0.30)
+            v.co.x -= 0.018 * back * drop
+            v.co.z -= 0.030 * back * drop
+    # swept UVs: u around the head, v hairline->tips (strand direction)
     me = scalp.data
     uv = me.uv_layers.active
     for poly in me.polygons:
@@ -232,52 +244,69 @@ def build_hair(body, sk):
 
     parts = [scalp]
 
-    # topknot: modest bun + gold tie + short swept-back flame tail
-    HAIR_SLOTS = ("Hair", "HairGold")
-    _assign_slots(scalp, HAIR_SLOTS, "Hair")
-    tie = add_torus("HairTie", knot_base + Vector((-0.004, 0, 0.018)), 0.020, 0.007)
-    _assign_slots(tie, HAIR_SLOTS, "HairGold")
-    bun = add_uv_sphere("HairBun", knot_base + Vector((0, 0, 0.008)), 0.024, squash=0.9)
-    _assign_slots(bun, HAIR_SLOTS, "Hair")
-    tail_pts = [
-        (knot_base + Vector((-0.004, 0.000, 0.020)), 0.016),
-        (knot_base + Vector((-0.052, 0.006, 0.042)), 0.012),
-        (knot_base + Vector((-0.098, -0.004, 0.048)), 0.007),
-        (knot_base + Vector((-0.132, 0.003, 0.040)), 0.0035),
+    # long locks: thick tapered tubes from the crown sweeping down the
+    # back to mid-back, fanned across the head's width
+    crown = Vector((-0.035, 0.0, 1.90))
+    lock_specs = [
+        # (y at crown, y at tip, tip z, sideways bow, root radius)
+        (-0.070, -0.115, 1.30, -0.020, 0.028),
+        (-0.045, -0.075, 1.24, -0.012, 0.031),
+        (-0.020, -0.035, 1.20, -0.004, 0.033),
+        (0.000, 0.000, 1.18, 0.000, 0.034),
+        (0.020, 0.035, 1.20, 0.004, 0.033),
+        (0.045, 0.075, 1.24, 0.012, 0.031),
+        (0.070, 0.115, 1.30, 0.020, 0.028),
+        # two shorter over-locks for crown volume
+        (-0.033, -0.060, 1.52, -0.010, 0.026),
+        (0.033, 0.060, 1.52, 0.010, 0.026),
     ]
-    tail = curve_tube("HairTail", tail_pts)
-    _assign_slots(tail, HAIR_SLOTS, "Hair")
-    parts += [tie, bun, tail]
+    for i, (y0, y1, z1, bow, r0) in enumerate(lock_specs):
+        pts = [
+            (Vector((crown.x, y0, crown.z)), r0),
+            (Vector((-0.085, y0 * 1.1 + bow, 1.76)), r0 * 0.94),
+            (Vector((-0.112, (y0 + y1) * 0.55 + bow, 1.58)), r0 * 0.82),
+            (Vector((-0.118, y1 + bow * 0.5, (z1 + 1.50) / 2)), r0 * 0.62),
+            (Vector((-0.105, y1, z1)), r0 * 0.26),
+        ]
+        lock = curve_tube(f"HairLock{i}", pts)
+        _assign_single_material(lock, "Hair")
+        parts.append(lock)
 
-    # sideburns: slim locks hugging the cheeks, ending at the jawline
+    # sideburns: fuller face-framing locks reaching below the jaw
     for side, sgn in (("L", 1.0), ("R", -1.0)):
         pts = [
-            (Vector((0.036, sgn * 0.0735, 1.762)), 0.0095),
-            (Vector((0.049, sgn * 0.0760, 1.722)), 0.0085),
-            (Vector((0.057, sgn * 0.0725, 1.682)), 0.0068),
-            (Vector((0.062, sgn * 0.0650, 1.648)), 0.0038),
+            (Vector((0.036, sgn * 0.0740, 1.775)), 0.0135),
+            (Vector((0.051, sgn * 0.0790, 1.720)), 0.0120),
+            (Vector((0.060, sgn * 0.0745, 1.665)), 0.0095),
+            (Vector((0.064, sgn * 0.0650, 1.612)), 0.0050),
         ]
         burn = curve_tube(f"HairSideburn{side}", pts)
         for v in burn.data.vertices:  # flatten against the cheek
             v.co.y -= sgn * max(0.0, (abs(v.co.y) - 0.068)) * 0.45
-        _assign_slots(burn, HAIR_SLOTS, "Hair")
+        _assign_single_material(burn, "Hair")
         parts.append(burn)
 
+    _assign_single_material(scalp, "Hair")
     hair = _join(parts, "GanondorfHair")
 
     # the scalp shell inherited the body's groups (mHead, mNeck, HEAD,
-    # NECK, mFaceForehead...); clear them so the mane rigs to mHead only
-    # and never reacts to head-size / appearance sliders
+    # NECK, mFaceForehead...); clear them, then grade weights by height:
+    # crown pure mHead -> nape blends mNeck -> lowest locks pick up a
+    # little mChest so the long mane follows head/neck naturally
     _clear_groups(hair)
-    _weight_all(hair, {"mHead": 1.0})
-    # lower back locks get a touch of neck follow
-    vg_head = hair.vertex_groups["mHead"]
-    vg_neck = hair.vertex_groups.get("mNeck") or hair.vertex_groups.new(name="mNeck")
+    vg_head = hair.vertex_groups.new(name="mHead")
+    vg_neck = hair.vertex_groups.new(name="mNeck")
+    vg_chest = hair.vertex_groups.new(name="mChest")
     for v in hair.data.vertices:
-        if v.co.z < 1.70:
-            f = min(0.35, (1.70 - v.co.z) * 3.0)
-            vg_head.add([v.index], 1.0 - f, "REPLACE")
-            vg_neck.add([v.index], f, "REPLACE")
+        z = v.co.z
+        wn = min(0.45, max(0.0, (1.70 - z) * 2.2))
+        wc = min(0.30, max(0.0, (1.48 - z) * 1.2))
+        wh = 1.0 - wn - wc
+        vg_head.add([v.index], wh, "REPLACE")
+        if wn > 0.0:
+            vg_neck.add([v.index], wn, "REPLACE")
+        if wc > 0.0:
+            vg_chest.add([v.index], wc, "REPLACE")
     return hair
 
 
