@@ -1,0 +1,26 @@
+GANONDORF UPLOAD CHECKLIST
+
+[ ] Mesh Upload Status enabled on account (IP quiz)
+[ ] ~L$600 balance
+[ ] Firestorm installed
+[ ] Bulk-uploaded 01_Textures (19 files)
+[ ] Uploaded 02_Body (skin weights ON, joint positions OFF)
+[ ] Uploaded 03_Hair (skin weights ON, joint positions OFF)
+[ ] Uploaded 04_Circlet (skin weights ON, joint positions OFF)
+[ ] Uploaded 05_Earrings (skin weights ON, joint positions OFF)
+[ ] Uploaded 06_Necklace (skin weights ON, joint positions OFF)
+[ ] Uploaded 07_Robe (skin weights ON, joint positions OFF)
+[ ] Uploaded 08_Sash (skin weights ON, joint positions OFF)
+[ ] Uploaded 09_Pants (skin weights ON, joint positions OFF)
+[ ] Uploaded 10_Bracer_Left (skin weights ON, joint positions OFF)
+[ ] Uploaded 11_Bracer_Right (skin weights ON, joint positions OFF)
+[ ] Uploaded 12_Anklet_Left (skin weights ON, joint positions OFF)
+[ ] Uploaded 13_Anklet_Right (skin weights ON, joint positions OFF)
+[ ] Uploaded 14_Sword (skin weights ON, joint positions OFF)
+[ ] New Skin (skin_head/upper/lower) worn
+[ ] New Shape (slider recipe) worn
+[ ] All 13 items Added
+[ ] Faces textured per QUICKSTART tables
+[ ] Alpha wearable on (system body hidden)
+[ ] Sword positioned
+[ ] Outfit saved as 'Ganondorf'
