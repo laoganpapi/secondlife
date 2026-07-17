@@ -158,6 +158,24 @@ def _assign_single_material(obj, name):
     obj.data.materials.append(_mat(name))
 
 
+def _assign_slots(obj, names, active):
+    """Give obj the item's FULL canonical slot table, all faces on `active`.
+
+    Every part of a multi-material item gets the same slot list before
+    joining, so bpy.ops.object.join merges slots 1:1 and no post-join
+    remap is needed.  (materials.clear() resets every polygon's
+    material_index to 0, so any clear-and-rebuild AFTER assigning face
+    indices silently collapses the item to one material -- the indices
+    must be set last, as done here.)"""
+    me = obj.data
+    me.materials.clear()
+    for n in names:
+        me.materials.append(_mat(n))
+    idx = names.index(active)
+    for p in me.polygons:
+        p.material_index = idx
+
+
 def _join(objs, name):
     select_only(objs)
     bpy.ops.object.join()
@@ -215,10 +233,12 @@ def build_hair(body, sk):
     parts = [scalp]
 
     # topknot: modest bun + gold tie + short swept-back flame tail
+    HAIR_SLOTS = ("Hair", "HairGold")
+    _assign_slots(scalp, HAIR_SLOTS, "Hair")
     tie = add_torus("HairTie", knot_base + Vector((-0.004, 0, 0.018)), 0.020, 0.007)
-    _assign_single_material(tie, "HairGold")
+    _assign_slots(tie, HAIR_SLOTS, "HairGold")
     bun = add_uv_sphere("HairBun", knot_base + Vector((0, 0, 0.008)), 0.024, squash=0.9)
-    _assign_single_material(bun, "Hair")
+    _assign_slots(bun, HAIR_SLOTS, "Hair")
     tail_pts = [
         (knot_base + Vector((-0.004, 0.000, 0.020)), 0.016),
         (knot_base + Vector((-0.052, 0.006, 0.042)), 0.012),
@@ -226,7 +246,7 @@ def build_hair(body, sk):
         (knot_base + Vector((-0.132, 0.003, 0.040)), 0.0035),
     ]
     tail = curve_tube("HairTail", tail_pts)
-    _assign_single_material(tail, "Hair")
+    _assign_slots(tail, HAIR_SLOTS, "Hair")
     parts += [tie, bun, tail]
 
     # sideburns: slim locks hugging the cheeks, ending at the jawline
@@ -240,28 +260,10 @@ def build_hair(body, sk):
         burn = curve_tube(f"HairSideburn{side}", pts)
         for v in burn.data.vertices:  # flatten against the cheek
             v.co.y -= sgn * max(0.0, (abs(v.co.y) - 0.068)) * 0.45
-        _assign_single_material(burn, "Hair")
+        _assign_slots(burn, HAIR_SLOTS, "Hair")
         parts.append(burn)
 
     hair = _join(parts, "GanondorfHair")
-    # consolidate to two material slots: Hair, HairGold
-    me = hair.data
-    slot_names = [m.name for m in me.materials]
-    keep_names = []
-    for n in ("Hair", "HairGold"):
-        if n in slot_names:
-            keep_names.append(n)
-    remap = {}
-    for i, n in enumerate(slot_names):
-        tgt = "HairGold" if "Gold" in n else "Hair"
-        remap[i] = keep_names.index(tgt)
-    for p in me.polygons:
-        p.material_index = remap.get(p.material_index, 0)
-    # rebuild slots
-    mats = [ _mat(n) for n in keep_names ]
-    me.materials.clear()
-    for m in mats:
-        me.materials.append(m)
 
     # the scalp shell inherited the body's groups (mHead, mNeck, HEAD,
     # NECK, mFaceForehead...); clear them so the mane rigs to mHead only
@@ -292,38 +294,23 @@ def build_circlet(body, sk):
         z = 1.7825 + 0.005 * math.sin(a)
         band_pts.append((Vector((x, y, z)), 0.006))
     band = curve_tube("CircletBand", band_pts)
-    _assign_single_material(band, "Gold")
+    _assign_slots(band, ("Gold", "Gem"), "Gold")
     parts.append(band)
 
     jewel = add_uv_sphere("CircletJewel", Vector((0.1225, 0.0, 1.788)), 0.0135, squash=1.25)
-    _assign_single_material(jewel, "Gem")
+    _assign_slots(jewel, ("Gold", "Gem"), "Gem")
     parts.append(jewel)
 
     frame = add_torus(
         "CircletFrame", Vector((0.116, 0.0, 1.788)), 0.0152, 0.0038,
         rot=Matrix.Rotation(math.radians(90), 4, "Y"),
     )
-    _assign_single_material(frame, "Gold")
+    _assign_slots(frame, ("Gold", "Gem"), "Gold")
     parts.append(frame)
 
     obj = _join(parts, "GanondorfCirclet")
-    _dedupe_two_slots(obj, ("Gold", "Gem"))
     _weight_all(obj, {"mHead": 1.0})
     return obj
-
-
-def _dedupe_two_slots(obj, names):
-    me = obj.data
-    slot_names = [m.name for m in me.materials]
-    remap = {}
-    for i, n in enumerate(slot_names):
-        base = names[1] if names[1] in n else names[0]
-        remap[i] = list(names).index(base)
-    for p in me.polygons:
-        p.material_index = remap.get(p.material_index, 0)
-    me.materials.clear()
-    for n in names:
-        me.materials.append(_mat(n))
 
 
 def build_earrings(body, sk):
@@ -356,7 +343,7 @@ def build_necklace(body, sk):
         z = 1.560 - 0.075 * math.sin(a)
         pts.append((Vector((x, y, z)), 0.010))
     collar = curve_tube("NecklaceCollar", pts)
-    _assign_single_material(collar, "Gold")
+    _assign_slots(collar, ("Gold", "Gem"), "Gold")
     parts.append(collar)
 
     # hanging plates, standing clear of the pecs
@@ -366,15 +353,14 @@ def build_necklace(body, sk):
         plate = add_uv_sphere(f"NecklacePlate{i}", Vector((cx, y, cz)), 0.030, squash=1.4)
         for v in plate.data.vertices:  # flatten into a plate
             v.co.x = (v.co.x - cx) * 0.28 + cx
-        _assign_single_material(plate, "Gold")
+        _assign_slots(plate, ("Gold", "Gem"), "Gold")
         parts.append(plate)
 
     gem = add_uv_sphere("NecklaceGem", Vector((0.168, 0.0, 1.446)), 0.015, squash=1.3)
-    _assign_single_material(gem, "Gem")
+    _assign_slots(gem, ("Gold", "Gem"), "Gem")
     parts.append(gem)
 
     obj = _join(parts, "GanondorfNecklace")
-    _dedupe_two_slots(obj, ("Gold", "Gem"))
     _weight_all(obj, {"mChest": 0.75, "mNeck": 0.25})
     return obj
 
@@ -398,7 +384,7 @@ def build_sword(body, sk):
     sheath = curve_tube("SwordSheath", pts)
     for v in sheath.data.vertices:
         v.co.x *= 0.45  # flatten
-    _assign_single_material(sheath, "Sheath")
+    _assign_slots(sheath, ("Sheath", "Gold", "Gem"), "Sheath")
     parts.append(sheath)
 
     # hilt: grip + guard + pommel
@@ -406,7 +392,7 @@ def build_sword(body, sk):
         "SwordGrip",
         [(Vector((0.0, -0.42, 0.0)), 0.013), (Vector((0.0, -0.19, 0.0)), 0.015)],
     )
-    _assign_single_material(grip, "Gold")
+    _assign_slots(grip, ("Sheath", "Gold", "Gem"), "Gold")
     parts.append(grip)
     guard = add_torus(
         "SwordGuard", Vector((0.0, -0.175, 0.0)), 0.034, 0.011,
@@ -414,24 +400,11 @@ def build_sword(body, sk):
     )
     for v in guard.data.vertices:
         v.co.x *= 0.5
-    _assign_single_material(guard, "Gold")
+    _assign_slots(guard, ("Sheath", "Gold", "Gem"), "Gold")
     parts.append(guard)
     pommel = add_uv_sphere("SwordPommel", Vector((0.0, -0.435, 0.0)), 0.020)
-    _assign_single_material(pommel, "Gem")
+    _assign_slots(pommel, ("Sheath", "Gold", "Gem"), "Gem")
     parts.append(pommel)
 
     obj = _join(parts, "GanondorfSword")
-    # slots: Sheath, Gold, Gem
-    me = obj.data
-    slot_names = [m.name for m in me.materials]
-    order = ["Sheath", "Gold", "Gem"]
-    remap = {}
-    for i, n in enumerate(slot_names):
-        base = "Gem" if "Gem" in n else ("Gold" if "Gold" in n else "Sheath")
-        remap[i] = order.index(base)
-    for p in me.polygons:
-        p.material_index = remap.get(p.material_index, 0)
-    me.materials.clear()
-    for n in order:
-        me.materials.append(_mat(n))
     return obj
