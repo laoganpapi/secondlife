@@ -21,7 +21,7 @@ TEXMAP = {
     "BAKED_LOWER": ("skin_lower.png", 0.55, 0.0, {}),
     "BAKED_EYES": ("eyes.png", 0.15, 0.0, {}),
     "LASHES": ("lashes.png", 0.6, 0.0, {"alpha": True}),
-    "Hair": ("hair.png", 0.45, 0.0, {}),
+    "Hair": ("hair.png", 0.78, 0.0, {}),
     "HairGold": ("gold.png", 0.25, 1.0, {}),
     "Gold": ("gold.png", 0.25, 1.0, {}),
     "Gem": ("gem.png", 0.1, 0.0, {"emission": 0.15}),

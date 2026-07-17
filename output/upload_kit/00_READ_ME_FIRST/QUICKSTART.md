@@ -77,8 +77,7 @@ irrelevant for it.
 
 | Select Face | Apply texture |
 |---|---|
-| face 0 (mane) | `hair  (Alpha masking, cutoff 64, if glitchy)` |
-| face 1 (gold tie) | `gold` |
+| face 0 (whole mane) | `hair  (Alpha masking, cutoff 64, if glitchy)` |
 
 **Circlet** — attach to *Skull*
 

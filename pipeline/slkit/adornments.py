@@ -188,11 +188,14 @@ def _join(objs, name):
 
 
 def build_hair(body, sk):
-    """Ganondorf's long voluminous red mane: volumized crown with a
-    widow's peak, a full back shell falling past the nape, and thick
-    tapered locks sweeping down to mid-back.  Loose hair (no tie) --
+    """Ganondorf's long voluminous red mane: a fitted scalp cap up front
+    that grows into a full, ridged curtain of hair falling from the crown
+    down over the shoulders to the upper back.  Loose hair (no tie) --
     the red circlet is a separate attachment, as in the reference art.
     """
+    # z of the nape / top of the falling curtain; the curtain tapers
+    # narrower as it falls to this z (roughly upper-mid back)
+    NAPE_Z, TIP_Z = 1.58, 1.22
 
     def keep(c: Vector) -> bool:
         ay = abs(c.y)
@@ -207,70 +210,48 @@ def build_hair(body, sk):
             return c.z > 1.795 - 0.05 * _sm((ay - 0.03) / 0.05)
         if c.x > -0.05:
             return c.z > 1.755
-        # back of the head: shell continues down past the nape
-        return c.z > 1.54 and ay < 0.105
+        # back of the head + falling curtain: wide at the nape, tapering
+        # narrower toward the tip
+        taper = 0.115 - 0.055 * _sm((NAPE_Z - c.z) / (NAPE_Z - TIP_Z))
+        return c.z > TIP_Z and ay < max(0.045, taper)
 
     def off(co: Vector, n: Vector) -> float:
-        # volume grows from the hairline to the crown and stays thick
-        # all the way down the back curtain
-        up = max(0.0, min(1.0, (co.z - 1.72) / 0.14))
-        back = _sm((-co.x - 0.01) / 0.09)
-        base = 0.008 + 0.026 * up + 0.030 * back
-        # extra crest along the top center (silhouette height)
-        base += 0.014 * _sm(1.0 - abs(co.y) / 0.045) * _sm((co.z - 1.80) / 0.06)
-        return base
+        if co.x > -0.05:
+            # fitted scalp cap up front
+            up = max(0.0, min(1.0, (co.z - 1.72) / 0.14))
+            return 0.006 + 0.014 * up
+        # falling curtain: thick at the nape, tapering thinner at the
+        # tip, but always well clear of the robe's back panel (0.022)
+        fall = _sm((NAPE_Z - co.z) / (NAPE_Z - TIP_Z))
+        base = 0.040 - 0.010 * fall
+        # strand ridges: corrugation across the width, fading out at the
+        # hairline and the very tip so it doesn't look like a solid slab
+        edge_fade = _sm((co.z - TIP_Z) / 0.08) * _sm((NAPE_Z - 0.02 - co.z) / 0.10)
+        ridge = 0.0035 * edge_fade * math.sin(co.y * 120.0 + 0.6)
+        return base + ridge
 
     from .outfit import shell_from_body
 
     scalp = shell_from_body(body, "HairScalp", keep, off, ["Hair"], None)
-    # gravity: drag the back shell outward and down so it drapes rather
-    # than hugging the skull/neck
-    for v in scalp.data.vertices:
-        back = _sm((-v.co.x - 0.01) / 0.09)
-        if back > 0.0:
-            drop = _sm((1.92 - v.co.z) / 0.30)
-            v.co.x -= 0.018 * back * drop
-            v.co.z -= 0.030 * back * drop
-    # swept UVs: u around the head, v hairline->tips (strand direction)
+    # planar UVs: u across the width (y), v root(crown, 0) -> tip(1).
+    # (The old atan2(y, z-1.55) sweep only stayed well-behaved while the
+    # mesh never crossed z=1.55; the curtain now falls to z=1.22, well
+    # below that pivot, so atan2 wrapped past +-pi/2 and pushed most of
+    # the new geometry's U outside [0,1] -- those vertices all clamped to
+    # nearly the same edge texel, which is why the mane rendered as a
+    # flat, almost untextured red instead of showing strands.)
+    TOP_Z = 1.92
     me = scalp.data
     uv = me.uv_layers.active
     for poly in me.polygons:
         for li in range(poly.loop_start, poly.loop_start + poly.loop_total):
             co = me.vertices[me.loops[li].vertex_index].co
             uv.data[li].uv = (
-                0.5 + math.atan2(co.y, max(1e-4, co.z - 1.55)) / math.pi,
-                (0.11 - co.x) / 0.24,
+                min(0.98, max(0.02, 0.5 + co.y / 0.28)),
+                min(1.0, max(0.0, (TOP_Z - co.z) / (TOP_Z - TIP_Z))),
             )
 
     parts = [scalp]
-
-    # long locks: thick tapered tubes from the crown sweeping down the
-    # back to mid-back, fanned across the head's width
-    crown = Vector((-0.035, 0.0, 1.90))
-    lock_specs = [
-        # (y at crown, y at tip, tip z, sideways bow, root radius)
-        (-0.070, -0.115, 1.30, -0.020, 0.028),
-        (-0.045, -0.075, 1.24, -0.012, 0.031),
-        (-0.020, -0.035, 1.20, -0.004, 0.033),
-        (0.000, 0.000, 1.18, 0.000, 0.034),
-        (0.020, 0.035, 1.20, 0.004, 0.033),
-        (0.045, 0.075, 1.24, 0.012, 0.031),
-        (0.070, 0.115, 1.30, 0.020, 0.028),
-        # two shorter over-locks for crown volume
-        (-0.033, -0.060, 1.52, -0.010, 0.026),
-        (0.033, 0.060, 1.52, 0.010, 0.026),
-    ]
-    for i, (y0, y1, z1, bow, r0) in enumerate(lock_specs):
-        pts = [
-            (Vector((crown.x, y0, crown.z)), r0),
-            (Vector((-0.085, y0 * 1.1 + bow, 1.76)), r0 * 0.94),
-            (Vector((-0.112, (y0 + y1) * 0.55 + bow, 1.58)), r0 * 0.82),
-            (Vector((-0.118, y1 + bow * 0.5, (z1 + 1.50) / 2)), r0 * 0.62),
-            (Vector((-0.105, y1, z1)), r0 * 0.26),
-        ]
-        lock = curve_tube(f"HairLock{i}", pts)
-        _assign_single_material(lock, "Hair")
-        parts.append(lock)
 
     # sideburns: fuller face-framing locks reaching below the jaw
     for side, sgn in (("L", 1.0), ("R", -1.0)):
