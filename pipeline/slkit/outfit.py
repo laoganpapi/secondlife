@@ -256,6 +256,53 @@ def build_sash(body, sk):
     return obj
 
 
+def build_loincloth(body, sk):
+    """A simple hip wrap: a snug waistband plus a front flap covering
+    the groin and a back flap covering the glutes/tailbone, both hanging
+    to roughly mid-thigh.  Sides, torso and legs stay bare."""
+
+    def flap_width(z: float) -> float:
+        # funnels smoothly from the waistband's own width (0.145, so the
+        # transition at z=1.02 has no hard step) down to a narrow hem
+        t = _s((1.02 - z) / 0.27)
+        return 0.145 - 0.085 * t
+
+    def keep(c: Vector) -> bool:
+        ay = abs(c.y)
+        if 1.02 < c.z < 1.15 and ay < 0.145:
+            return True  # waistband: snug ring around the hips
+        if c.x > 0.01 and 0.72 < c.z <= 1.02 and ay < flap_width(c.z):
+            return True  # front flap: covers the groin
+        if c.x < -0.01 and 0.74 < c.z <= 1.02 and ay < flap_width(c.z):
+            return True  # back flap: covers the glutes/tailbone
+        return False
+
+    def off(co: Vector, n: Vector) -> float:
+        if co.z > 1.02:
+            return 0.018  # waistband hugs tight
+        drop = _s((1.02 - co.z) / 0.28)
+        return 0.018 + 0.020 * drop  # flaps drape looser toward the hem
+
+    obj = shell_from_body(body, "GanondorfLoincloth", keep, off, ["Loincloth"], None)
+
+    # cylindrical UV around the hips (own leather/cloth texture, not SLUV)
+    me = obj.data
+    uv = me.uv_layers.active
+    for poly in me.polygons:
+        for li in range(poly.loop_start, poly.loop_start + poly.loop_total):
+            co = me.vertices[me.loops[li].vertex_index].co
+            theta = math.atan2(co.y, co.x)
+            uv.data[li].uv = ((theta / (2 * math.pi)) % 1.0, (co.z - 0.72) / 0.43)
+
+    # gentle hem sway on the flaps
+    for v in me.vertices:
+        if v.co.z < 1.00:
+            band = math.sin((v.co.z - 0.72) / 0.30 * math.pi * 2.0 + v.co.x * 6.0)
+            v.co.y += 0.004 * band * _s((1.00 - v.co.z) / 0.28)
+    me.update()
+    return obj
+
+
 def build_pants(body, sk):
     """Wide gathered trousers from below the sash to the ankles."""
 

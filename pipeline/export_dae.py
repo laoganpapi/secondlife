@@ -28,9 +28,7 @@ from slkit.rigging import cleanup_weights  # noqa: E402
 # attachment -> object names (multi-object DAEs upload as one linkset)
 ITEMS = {
     "ganondorf_body": ["GanondorfBody", "GanondorfEyeLeft", "GanondorfEyeRight", "GanondorfLashes"],
-    "ganondorf_robe": ["GanondorfRobe"],
-    "ganondorf_sash": ["GanondorfSash"],
-    "ganondorf_pants": ["GanondorfPants"],
+    "ganondorf_loincloth": ["GanondorfLoincloth"],
     "ganondorf_bracer_left": ["GanondorfBracerLeft"],
     "ganondorf_bracer_right": ["GanondorfBracerRight"],
     "ganondorf_anklet_left": ["GanondorfAnkletLeft"],

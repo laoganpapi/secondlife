@@ -26,9 +26,7 @@ def main() -> None:
     arm = bpy.data.objects["GanondorfRig"]
 
     items = []
-    items.append(outfit.build_robe(body, sk))
-    items.append(outfit.build_sash(body, sk))
-    items.append(outfit.build_pants(body, sk))
+    items.append(outfit.build_loincloth(body, sk))
     items += outfit.build_bracers(body, sk)
     items += outfit.build_anklets(body, sk)
     items.append(adornments.build_hair(body, sk))
@@ -58,8 +56,7 @@ def main() -> None:
         "LASHES": (0.08, 0.05, 0.04, 1),
         "Hair": (0.48, 0.08, 0.05, 1), "HairGold": (0.85, 0.65, 0.20, 1),
         "Gold": (0.85, 0.65, 0.20, 1), "Gem": (0.60, 0.06, 0.10, 1),
-        "RobeUpper": (0.12, 0.12, 0.10, 1), "RobeLower": (0.12, 0.12, 0.10, 1),
-        "Sash": (0.86, 0.74, 0.64, 1), "Pants": (0.17, 0.18, 0.15, 1),
+        "Loincloth": (0.30, 0.20, 0.10, 1),
         "Bracer": (0.38, 0.27, 0.13, 1), "LegWrap": (0.32, 0.30, 0.24, 1),
         "Sheath": (0.14, 0.11, 0.09, 1),
     }

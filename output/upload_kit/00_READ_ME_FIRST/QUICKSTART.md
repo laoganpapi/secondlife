@@ -19,12 +19,12 @@ this kit takes minutes instead of hours.
 ## 2. Upload all textures in one action
 
 `Avatar menu → Upload → Bulk (L$10 per file)...` → select **every** file in
-`01_Textures/` → OK. That's all 19 textures, one action. They appear in
+`01_Textures/` → OK. That's all 14 textures, one action. They appear in
 Inventory → Textures.
 
-## 3. Upload the 13 meshes (~30 seconds each)
+## 3. Upload the 11 meshes (~30 seconds each)
 
-For each folder `02_Body` … `14_Sword`, in order:
+For each folder `02_Body` … `12_Sword`, in order:
 
 1. `Avatar menu → Upload → Model...` → pick the main file (the one
    **without** `_LOD` in its name, e.g. `ganondorf_body.dae`).
@@ -37,7 +37,7 @@ For each folder `02_Body` … `14_Sword`, in order:
    joint positions UNCHECKED** (this matters).
 5. Calculate weights & fee → Upload. Name it after the folder.
 
-The sword (14) is the only unrigged item — same steps, skin weights
+The sword (12) is the only unrigged item — same steps, skin weights
 irrelevant for it.
 
 ## 4. Assemble your avatar (in-world, ~15 min)
@@ -46,9 +46,12 @@ irrelevant for it.
    set Head/Upper/Lower to `skin_head` / `skin_upper` / `skin_lower`. Wear it.
 2. **Shape**: New Body Parts → **New Shape** → edit → set sliders:
    Height 90-100, Body Thickness 60-70, Torso Muscles 75+, Leg Muscles 70,
+   **Leg Length 70-85** (the mesh is weighted to standard joints, so it
+   follows this slider correctly -- use it for "longer legs" rather than
+   a custom stretch, which would desync the knee bend from the knee mesh),
    Shoulders 80+, Hand Size 60, Head Size 45-50, Neck Thickness 70. Wear it.
    (Face detail is modeled into the mesh; sliders fine-tune.)
-3. **Wear the meshes**: select all 13 uploaded items in Inventory →
+3. **Wear the meshes**: select all 11 uploaded items in Inventory →
    right-click → **Add** (never "Wear" — Wear replaces, Add stacks).
 4. **Texture the faces**: right-click each worn item → Edit → tick
    **Select Face** → click a face → Textures tab → apply per the tables
@@ -77,7 +80,7 @@ irrelevant for it.
 
 | Select Face | Apply texture |
 |---|---|
-| face 0 (whole mane) | `hair  (Alpha masking, cutoff 64, if glitchy)` |
+| face 0 (whole mane) | `hair  (Alpha MASKING required, cutoff ~50 -- this is a card-based mesh hair, blending will sort wrong)` |
 
 **Circlet** — attach to *Skull*
 
@@ -99,24 +102,11 @@ irrelevant for it.
 | face 0 (collar+plates) | `gold` |
 | face 1 (gem) | `gem  (Glow 0.05)` |
 
-**Robe** — attach to *Spine*
+**Loincloth** — attach to *Pelvis*
 
 | Select Face | Apply texture |
 |---|---|
-| face 0 (upper) | `robe_upper  (+ robe_normal in Bumpiness)` |
-| face 1 (skirt) | `robe_lower  (+ robe_normal in Bumpiness)` |
-
-**Sash** — attach to *Pelvis*
-
-| Select Face | Apply texture |
-|---|---|
-| face 0 | `sash  (+ sash_normal in Bumpiness)` |
-
-**Pants** — attach to *Pelvis*
-
-| Select Face | Apply texture |
-|---|---|
-| face 0 | `pants  (+ pants_normal in Bumpiness)` |
+| face 0 | `loincloth  (+ loincloth_normal in Bumpiness)` |
 
 **Bracer Left** — attach to *L Forearm*
 

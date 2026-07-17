@@ -187,71 +187,186 @@ def _join(objs, name):
 # ---------------------------------------------------------------------------
 
 
+def strand_card(name: str, points: list, widths: list, uv_u: tuple, thickness=0.0018):
+    """A flat tapered ribbon (real front+back faces + edge caps, so it
+    reads solidly from any angle without depending on a double-sided
+    render flag).  This is the SL "mesh hair" primitive: the geometry is
+    a plain card -- individual strand definition comes entirely from an
+    alpha-cutout texture sampled across `uv_u` (see paint_hair_strands),
+    not from the mesh itself."""
+    bm = bmesh.new()
+    uv_layer = bm.loops.layers.uv.new("UVMap")
+    n = len(points)
+    front, back = [], []
+    for i in range(n):
+        p = points[i]
+        if i == 0:
+            tangent = (points[1] - points[0]).normalized()
+        elif i == n - 1:
+            tangent = (points[i] - points[i - 1]).normalized()
+        else:
+            tangent = (points[i + 1] - points[i - 1]).normalized()
+        side = tangent.cross(Vector((0.0, 0.0, 1.0)))
+        if side.length < 1e-5:
+            side = Vector((1.0, 0.0, 0.0))
+        side.normalize()
+        normal = tangent.cross(side).normalized()
+        half_w = widths[i] * 0.5
+        left, right = p - side * half_w, p + side * half_w
+        front.append((bm.verts.new(left + normal * thickness * 0.5),
+                      bm.verts.new(right + normal * thickness * 0.5)))
+        back.append((bm.verts.new(left - normal * thickness * 0.5),
+                     bm.verts.new(right - normal * thickness * 0.5)))
+
+    u0, u1 = uv_u
+
+    def set_uv(face, uvs):
+        for loop, uv in zip(face.loops, uvs):
+            loop[uv_layer].uv = uv
+
+    for i in range(n - 1):
+        v0, v1 = i / (n - 1), (i + 1) / (n - 1)
+        fl0, fr0 = front[i]; fl1, fr1 = front[i + 1]
+        bl0, br0 = back[i]; bl1, br1 = back[i + 1]
+        set_uv(bm.faces.new((fl0, fr0, fr1, fl1)), [(u0, v0), (u1, v0), (u1, v1), (u0, v1)])
+        set_uv(bm.faces.new((br0, bl0, bl1, br1)), [(u1, v0), (u0, v0), (u0, v1), (u1, v1)])
+        set_uv(bm.faces.new((fl0, fl1, bl1, bl0)), [(u0, v0)] * 4)
+        set_uv(bm.faces.new((fr1, fr0, br0, br1)), [(u1, v1)] * 4)
+    fl0, fr0 = front[0]; bl0, br0 = back[0]
+    set_uv(bm.faces.new((fr0, fl0, bl0, br0)), [(0.5 * (u0 + u1), 0.0)] * 4)
+    fln, frn = front[-1]; bln, brn = back[-1]
+    set_uv(bm.faces.new((fln, frn, brn, bln)), [(0.5 * (u0 + u1), 1.0)] * 4)
+
+    me = bpy.data.meshes.new(name)
+    bm.normal_update()
+    bm.to_mesh(me)
+    bm.free()
+    return _new_obj(name, me)
+
+
+# approximate scalp ellipsoid used to place hair-card roots -- purely a
+# placement aid; the HairScalp shell below backs it so any mismatch with
+# the true head surface never shows through as a bald gap
+def _scalp_root(lat: float, lon_deg: float) -> Vector:
+    """lat: 0 (crown) -> 1 (nape).  lon_deg: 0 = straight back, +-100 =
+    wraps toward the temple/ear, never into the face."""
+    s = lon_deg / 100.0
+    z = 1.90 - lat * 0.35
+    y_max = 0.065 + 0.045 * _sm(lat / 0.35) * _sm((1.0 - lat) / 0.5)
+    y = s * y_max
+    depth = -0.02 - 0.055 * _sm(lat / 0.3)
+    bulge = _sm(lat / 0.45) * _sm((1.0 - lat) / 0.55)
+    x = depth - 0.045 * bulge + 0.10 * abs(s) ** 1.4
+    return Vector((x, y, z))
+
+
 def build_hair(body, sk):
-    """Ganondorf's long voluminous red mane: a fitted scalp cap up front
-    that grows into a full, ridged curtain of hair falling from the crown
-    down over the shoulders to the upper back.  Loose hair (no tie) --
-    the red circlet is a separate attachment, as in the reference art.
+    """Ganondorf's long voluminous red mane, built the way quality SL
+    "mesh hair" is built: a thin scalp shell for coverage, plus ~50 flat
+    tapered strand cards fanned across the crown, temples and a long
+    back cascade.  Every card shares one texture atlas whose alpha
+    channel cuts each card into 3-4 individual visible strands -- a
+    smooth shell never reads as hair in SL; the strand definition has to
+    come from the alpha mask, not the geometry.
     """
-    # z of the nape / top of the falling curtain; the curtain tapers
-    # narrower as it falls to this z (roughly upper-mid back)
-    NAPE_Z, TIP_Z = 1.58, 1.22
+    # the scalp shell is ONLY root coverage right where the crown cards
+    # emerge -- it must never be the visible hair surface itself (a big
+    # opaque OR alpha-cutout dome both read as "a cap"; a strand tile
+    # spread across the full head width is mostly transparent gap, which
+    # left dark voids).  Keep it small, opaque, and hidden under the
+    # cards; every card below this line gets true see-through gaps to
+    # skin, which is what actually reads as individual strands.
+    SCALP_Z = 1.74
 
     def keep(c: Vector) -> bool:
         ay = abs(c.y)
-        # keep the (pointed, visible) ears and face clear
         if ay > 0.072 and c.z < 1.80 and c.x > -0.055:
-            return False
-        # widow's peak: a V of hair dipping onto the center forehead
+            return False  # keep the (pointed, visible) ears clear
         if c.x > 0.09 and ay < 0.018 and c.z > 1.772:
-            return True
-        # front hairline high, dropping toward the temples
+            return True  # widow's peak
         if c.x > 0.02:
             return c.z > 1.795 - 0.05 * _sm((ay - 0.03) / 0.05)
         if c.x > -0.05:
             return c.z > 1.755
-        # back of the head + falling curtain: wide at the nape, tapering
-        # narrower toward the tip
-        taper = 0.115 - 0.055 * _sm((NAPE_Z - c.z) / (NAPE_Z - TIP_Z))
-        return c.z > TIP_Z and ay < max(0.045, taper)
+        return c.z > SCALP_Z and ay < 0.10  # crown only, not the nape
 
     def off(co: Vector, n: Vector) -> float:
-        if co.x > -0.05:
-            # fitted scalp cap up front
-            up = max(0.0, min(1.0, (co.z - 1.72) / 0.14))
-            return 0.006 + 0.014 * up
-        # falling curtain: thick at the nape, tapering thinner at the
-        # tip, but always well clear of the robe's back panel (0.022)
-        fall = _sm((NAPE_Z - co.z) / (NAPE_Z - TIP_Z))
-        base = 0.040 - 0.010 * fall
-        # strand ridges: corrugation across the width, fading out at the
-        # hairline and the very tip so it doesn't look like a solid slab
-        edge_fade = _sm((co.z - TIP_Z) / 0.08) * _sm((NAPE_Z - 0.02 - co.z) / 0.10)
-        ridge = 0.0035 * edge_fade * math.sin(co.y * 120.0 + 0.6)
-        return base + ridge
+        up = max(0.0, min(1.0, (co.z - 1.72) / 0.14))
+        return 0.003 + 0.005 * up
 
     from .outfit import shell_from_body
 
     scalp = shell_from_body(body, "HairScalp", keep, off, ["Hair"], None)
-    # planar UVs: u across the width (y), v root(crown, 0) -> tip(1).
-    # (The old atan2(y, z-1.55) sweep only stayed well-behaved while the
-    # mesh never crossed z=1.55; the curtain now falls to z=1.22, well
-    # below that pivot, so atan2 wrapped past +-pi/2 and pushed most of
-    # the new geometry's U outside [0,1] -- those vertices all clamped to
-    # nearly the same edge texel, which is why the mane rendered as a
-    # flat, almost untextured red instead of showing strands.)
-    TOP_Z = 1.92
+    # opaque solid-fill tile (u in [0.8,1.0]) -- deliberately flat, since
+    # it should never be the dominant visible surface
     me = scalp.data
     uv = me.uv_layers.active
     for poly in me.polygons:
         for li in range(poly.loop_start, poly.loop_start + poly.loop_total):
             co = me.vertices[me.loops[li].vertex_index].co
-            uv.data[li].uv = (
-                min(0.98, max(0.02, 0.5 + co.y / 0.28)),
-                min(1.0, max(0.0, (TOP_Z - co.z) / (TOP_Z - TIP_Z))),
-            )
-
+            uv.data[li].uv = (0.9, min(1.0, max(0.0, (1.92 - co.z) / 0.20)))
+    _assign_single_material(scalp, "Hair")
     parts = [scalp]
+
+    def add_card(lat, lon, direction, length, w0, w1, bow, tile, segs=4):
+        root = _scalp_root(lat, lon)
+        side_axis = Vector((0.0, 1.0 if lon >= 0 else -1.0, 0.0))
+        pts, widths = [], []
+        for i in range(segs + 1):
+            t = i / segs
+            p = root + direction * (length * t)
+            p += Vector((0.0, 0.0, -0.10 * length * t * t))  # gravity droop
+            p += side_axis * (bow * math.sin(t * math.pi * 0.5))
+            pts.append(p)
+            widths.append(w0 * (1 - t) + w1 * t)
+        u0 = tile / 5.0
+        card = strand_card(f"HairCard{tile}_{lat:.2f}_{lon:.0f}", pts, widths, (u0, u0 + 1.0 / 5.0))
+        _assign_single_material(card, "Hair")
+        return card
+
+    idx = 0
+    # crown: short, swept back over the top, radiating from the part
+    for lon in (-95, -65, -40, -20, -6, 6, 20, 40, 65, 95):
+        for lat in (0.03, 0.14):
+            idx += 1
+            direction = Vector((-0.35, math.copysign(0.25, lon or 1), -0.55)).normalized()
+            parts.append(add_card(
+                lat, lon, direction, 0.11 + 0.02 * (idx % 3),
+                0.0065, 0.0018, 0.012 * math.copysign(1, lon or 1), idx % 4,
+            ))
+
+    # temple/face-framing cards, medium length sweeping past the jaw
+    for side, sgn in ((0, 1.0), (1, -1.0)):
+        for i, lat in enumerate((0.05, 0.14, 0.24, 0.34)):
+            idx += 1
+            lon = sgn * (78 + 5 * i)
+            direction = Vector((0.12, sgn * -0.10, -0.92)).normalized()
+            parts.append(add_card(
+                lat, lon, direction, 0.14 + 0.015 * i,
+                0.0072, 0.0021, sgn * 0.006, idx % 4,
+            ))
+
+    # long back cascade: three depth layers falling past the shoulders to
+    # roughly mid-back.  Cards stay thin (individual strand definition
+    # needs gaps, not width), so volume comes from CARD COUNT/density
+    # instead -- the standard mesh-hair fix for "sparse" vs "solid slab".
+    # Jittered length/angle so the silhouette reads as separated locks.
+    LON_STEPS = (-88, -77, -66, -55, -46, -37, -28, -20, -12, -6, 0,
+                 6, 12, 20, 28, 37, 46, 55, 66, 77, 88)
+    for layer, (z_bias, len_base) in enumerate(((0.0, 0.46), (-0.010, 0.41), (-0.020, 0.36))):
+        for i, lon in enumerate(LON_STEPS):
+            if (i + layer) % 2:
+                continue  # stagger: each layer covers half the angles
+            idx += 1
+            lat = 0.40 + layer * 0.075
+            jitter = ((idx * 37) % 100) / 100.0
+            length = len_base + 0.10 * jitter
+            direction = Vector((-0.10 + z_bias, math.copysign(0.06, lon or 1) * 0.4, -0.98)).normalized()
+            parts.append(add_card(
+                lat, lon, direction, length,
+                0.0090, 0.0026, math.copysign(0.018, lon or 1) * (0.5 + jitter),
+                idx % 4, segs=5,
+            ))
 
     # sideburns: fuller face-framing locks reaching below the jaw
     for side, sgn in (("L", 1.0), ("R", -1.0)):
@@ -267,7 +382,6 @@ def build_hair(body, sk):
         _assign_single_material(burn, "Hair")
         parts.append(burn)
 
-    _assign_single_material(scalp, "Hair")
     hair = _join(parts, "GanondorfHair")
 
     # the scalp shell inherited the body's groups (mHead, mNeck, HEAD,

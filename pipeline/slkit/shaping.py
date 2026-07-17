@@ -21,32 +21,32 @@ from mathutils import Vector
 HEAD_MORPHS = {
     "Male_Head": 1.0,
     "Square_Head": 0.45,
-    "Square_Jaw": 0.68,
-    "Jaw_Angle": 0.5,
-    "Deep_Chin": 0.3,
+    "Square_Jaw": 0.85,
+    "Jaw_Angle": 0.65,
+    "Deep_Chin": 0.4,
     "Cleft_Chin": 0.3,
     "Jaw_Jut": 0.35,
     "Weak_Chin": -0.2,
     "Big_Brow": 1.0,
-    "Lower_Eyebrows": 0.8,
+    "Lower_Eyebrows": 0.9,
     "Pointy_Eyebrows": 0.4,
     "Nose_Big_Out": 0.55,
     "Broad_Nostrils": 0.4,
     "Noble_Nose_Bridge": 0.7,
     "Wide_Nose_Bridge": 0.45,
     "Low_Septum_Nose": 0.0,
-    "High_Cheek_Bones": 0.55,
-    "Sunken_Cheeks": 0.5,
+    "High_Cheek_Bones": 0.75,
+    "Sunken_Cheeks": 0.65,
     "Pointy_Ears": 1.0,
     "Ears_Out": 0.25,
     "Big_Ears": 0.35,
     "Wide_Lips": 0.18,
     "Lips_Thin": 0.12,
     "Mouth_Height": 0.0,
-    "Baggy_Eyes": 0.3,
+    "Baggy_Eyes": 0.15,
     "Upper_Eyelid_Fold": 0.4,
     "Eye_Spread": 0.2,
-    "Old": 0.15,
+    "Old": 0.05,
     "Egg_Head": -0.3,
     "Forehead_Slant": 0.45,
 }
@@ -183,23 +183,24 @@ def sculpt_body(obj) -> None:
                 co.x += (x + 0.02) / r * 0.012 * f
                 co.y += y / r * 0.012 * f
 
-        # thigh girth: radial around each leg axis
-        if 0.55 < z < 1.04 and 0.01 < ay < 0.20:
-            f = _s((z - 0.55) / 0.15) * _s((1.04 - z) / 0.12)
+        # thigh girth: radial around each leg axis (heroic-bulk pass --
+        # legs read bare under the loincloth, so mass carries the look)
+        if 0.50 < z < 1.06 and 0.01 < ay < 0.22:
+            f = _s((z - 0.50) / 0.16) * _s((1.06 - z) / 0.12)
             dx, dy = x, ay - 0.085
             r = math.hypot(dx, dy)
-            if 1e-5 < r < 0.13:
-                k = 0.013 * f
+            if 1e-5 < r < 0.15:
+                k = 0.024 * f
                 co.x += dx / r * k
                 co.y += math.copysign(max(0.0, dy / r * k), y)
 
         # calves
-        if 0.18 < z < 0.52 and 0.01 < ay < 0.16:
-            f = _s((z - 0.18) / 0.08) * _s((0.52 - z) / 0.10)
+        if 0.16 < z < 0.54 and 0.01 < ay < 0.18:
+            f = _s((z - 0.16) / 0.09) * _s((0.54 - z) / 0.11)
             dx, dy = x + 0.01, ay - 0.085
             r = math.hypot(dx, dy)
-            if 1e-5 < r < 0.10:
-                k = 0.008 * f
+            if 1e-5 < r < 0.12:
+                k = 0.016 * f
                 co.x += dx / r * k
                 co.y += math.copysign(max(0.0, dy / r * k), y)
 
@@ -223,10 +224,34 @@ def sculpt_head(obj) -> None:
         if d < 0.045 and ay < 0.05:
             co.x += 0.006 * _gauss(d, 0.02) * _s(1.0 - ay / 0.05)
 
-        # jaw width
+        # temple hollow: a recessed band beside/above the brow -- makes
+        # the brow ridge read as projecting further by contrast
+        d = math.hypot(ay - 0.065, z - 1.815)
+        if d < 0.05 and x > -0.02:
+            co.x -= 0.0045 * _gauss(d, 0.028)
+
+        # zygomatic shelf: a sharp cheekbone ridge below the eye, on top
+        # of the softer High_Cheek_Bones/Sunken_Cheeks morphs
+        d = math.hypot(ay - 0.082, z - 1.718)
+        if d < 0.045:
+            g = _gauss(d, 0.022)
+            co.x += 0.0075 * g
+            co.y += math.copysign(0.003 * g, y)
+
+        # jaw width (broad base curve)
         if 1.66 < z < 1.73 and ay > 0.03 and x > -0.02:
             f = _s((1.73 - z) / 0.05) * _s((ay - 0.03) / 0.03)
             co.y += math.copysign(0.0035 * f, y)
+
+        # hard jaw corner: a tighter, edge-like push at the gonion so the
+        # jaw reads as a hard angle rather than a smooth curve, plus a
+        # shallow hollow just below it to sharpen the transition
+        d = math.hypot(ay - 0.086, z - 1.672)
+        if d < 0.035:
+            co.y += math.copysign(0.0055 * _gauss(d, 0.018), y)
+        if 1.62 < z < 1.665 and ay > 0.05 and x > -0.01:
+            f = _s((1.665 - z) / 0.045) * _s((ay - 0.05) / 0.04)
+            co.x -= 0.003 * f
 
         # taller cranium
         if z > 1.80:

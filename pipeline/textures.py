@@ -357,23 +357,57 @@ def paint_lashes():
 # --------------------------------------------------------------------------
 
 
-def paint_hair():
+def paint_hair_strands():
+    """SL "mesh hair" convention: the geometry (see adornments.strand_card)
+    is a plain tapered card -- individual strand definition comes
+    entirely from an alpha-cutout texture, never from the mesh itself.
+    Atlas layout: 4 tiles of a few parallel strand streaks each (fully
+    transparent in the gaps between them, so neighbouring cards don't
+    look identical), plus 1 solid opaque tile reserved for the
+    HairScalp backing shell.  Alpha uses a sharp (~0.02) cutoff because
+    in-world this must use Alpha MASKING, not blending, to avoid the
+    classic multi-card sorting-order glitch."""
     size = SIZE
+    n_tiles = 5
+    tile_w = size // n_tiles
     yy, xx = np.mgrid[0:size, 0:size]
-    v = 1 - yy / (size - 1)   # v: hairline(0) -> knot(1) = strand direction
-    strands = fbm(size, octaves=6, seed=31, persistence=0.75)
-    # stretch noise along v for strand streaks
-    streak = np.zeros((size, size), np.float32)
-    line = fbm(size, octaves=6, seed=37)[0, :]  # 1D profile across u
-    streak[:] = line[None, :]
-    streak = 0.6 * streak + 0.4 * strands
-    t = np.clip(0.15 + 0.85 * streak, 0, 1)
-    rgb = HAIR_DARK[None, None] * (1 - t[..., None]) + HAIR_MID[None, None] * t[..., None]
-    # root->flow brightness: brighter along the sweep
-    rgb += (HAIR_HI - HAIR_MID)[None, None] * 0.35 * (streak * v)[..., None]
-    # deep shadow at hairline edge
-    rgb *= 0.75 + 0.25 * smooth01(v / 0.08)[..., None]
-    save(rgb, "hair")
+    v = 1.0 - yy / (size - 1)  # 0 root -> 1 tip
+    rgb = np.zeros((size, size, 3), np.float32)
+    alpha = np.zeros((size, size), np.float32)
+
+    for t in range(n_tiles):
+        x0 = t * tile_w
+        x1 = (t + 1) * tile_w if t < n_tiles - 1 else size
+        w = x1 - x0
+        tv = v[:, x0:x1]
+        col = HAIR_DARK[None, None] * (1 - tv[..., None]) + HAIR_MID[None, None] * tv[..., None]
+        col = col + (HAIR_HI - HAIR_MID)[None, None] * 0.4 * smooth01((tv - 0.6) / 0.3)[..., None]
+
+        if t == n_tiles - 1:
+            rgb[:, x0:x1] = col
+            alpha[:, x0:x1] = 1.0
+            continue
+
+        local_u = (xx[:, x0:x1] - x0) / w
+        n_strands = 3 + (t % 2)
+        tile_rgb = np.zeros((size, w, 3), np.float32)
+        tile_a = np.zeros((size, w), np.float32)
+        for s in range(n_strands):
+            seed = 101 + t * 13 + s * 7
+            center = (s + 0.5) / n_strands
+            wiggle = 0.035 * np.sin(tv * (7 + s) + seed * 0.3)
+            d = np.abs(local_u - center - wiggle)
+            width = 0.055 + 0.015 * ((seed * 53) % 100) / 100.0
+            strand_a = smooth01((width - d) / 0.014)
+            strand_a = strand_a * smooth01(tv / 0.05) * smooth01((1.0 - tv) / 0.20)
+            jitter = 0.82 + 0.32 * ((seed * 37) % 100) / 100.0
+            mask = strand_a > tile_a
+            tile_rgb[mask] = (col * jitter)[mask]
+            tile_a = np.maximum(tile_a, strand_a)
+        rgb[:, x0:x1] = tile_rgb
+        alpha[:, x0:x1] = tile_a
+
+    save(rgb, "hair", alpha=alpha)
 
     # gold tie
     save(_metal(256, seed=41), "gold")
@@ -473,6 +507,24 @@ def paint_sash():
     save(rgb, "sash")
 
 
+def paint_loincloth():
+    dump = f"{OUT}/uvdump/GanondorfLoincloth.json"
+    cov, X, Y, Z, NRM = rasterize(dump, 0)
+    ao = load_ao(f"{OUT}/bake/ao_GanondorfLoincloth_Loincloth.png")
+    n = fbm(SIZE, octaves=6, seed=141, persistence=0.6)
+    rgb = LEATHER[None, None] * (0.75 + 0.4 * n[..., None])
+    rgb *= np.clip(ao, 0.35, 1)[..., None] ** 0.9
+    # gold trim along the waistband hem and flap edges
+    band = boundary_band(cov, 10)
+    gold = _metal(SIZE, seed=143)
+    rgb[band] = gold[band] * 0.85
+    # subtle gerudo geometric pattern
+    patt = ((np.sin(Z * 200) > 0.9) & (np.abs(np.sin(Y * 130)) > 0.5)) & cov
+    rgb[patt] = rgb[patt] * 0.6 + GOLD_DARK * 0.4
+    rgb = dilate_colors(rgb, cov)
+    save(rgb, "loincloth")
+
+
 def paint_bracer_and_wraps():
     # bracer (SLUV upper coords)
     dump = f"{OUT}/uvdump/GanondorfBracerLeft.json"
@@ -524,20 +576,16 @@ def normal_from_height(h: np.ndarray, strength=2.0) -> np.ndarray:
 
 
 def paint_normals():
-    save(normal_from_height(_weave(SIZE, seed=51), 1.6), "robe_normal")
-    save(normal_from_height(_weave(SIZE, seed=61, scale=260), 1.4), "pants_normal")
-    silk = fbm(SIZE, octaves=5, seed=71, persistence=0.5)
-    save(normal_from_height(silk, 0.8), "sash_normal")
+    n = fbm(SIZE, octaves=6, seed=141, persistence=0.6)
+    save(normal_from_height(n, 1.5), "loincloth_normal")
 
 
 if __name__ == "__main__":
     paint_skin()
     paint_eyes()
     paint_lashes()
-    paint_hair()
-    paint_robe()
-    paint_pants()
-    paint_sash()
+    paint_hair_strands()
+    paint_loincloth()
     paint_bracer_and_wraps()
     paint_sword()
     paint_normals()

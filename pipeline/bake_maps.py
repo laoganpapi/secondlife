@@ -109,7 +109,7 @@ def main() -> None:
     os.makedirs(f"{out}/bake", exist_ok=True)
 
     names = [
-        "GanondorfBody", "GanondorfRobe", "GanondorfPants", "GanondorfSash",
+        "GanondorfBody", "GanondorfLoincloth",
         "GanondorfBracerLeft", "GanondorfBracerRight",
         "GanondorfAnkletLeft", "GanondorfAnkletRight",
         "GanondorfHair", "GanondorfLashes", "GanondorfEyeLeft",
@@ -120,7 +120,7 @@ def main() -> None:
             uvdump(obj, f"{out}/uvdump/{name}.json")
 
     # AO bakes: body (SLUV: shading for skin) and main garments
-    for name in ("GanondorfBody", "GanondorfRobe", "GanondorfPants", "GanondorfSash"):
+    for name in ("GanondorfBody", "GanondorfLoincloth"):
         obj = bpy.data.objects.get(name)
         if obj:
             bake_ao(obj, f"{out}/bake")

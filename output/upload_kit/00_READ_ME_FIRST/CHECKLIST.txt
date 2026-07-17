@@ -9,14 +9,12 @@ GANONDORF UPLOAD CHECKLIST
 [ ] Uploaded 04_Circlet (skin weights ON, joint positions OFF)
 [ ] Uploaded 05_Earrings (skin weights ON, joint positions OFF)
 [ ] Uploaded 06_Necklace (skin weights ON, joint positions OFF)
-[ ] Uploaded 07_Robe (skin weights ON, joint positions OFF)
-[ ] Uploaded 08_Sash (skin weights ON, joint positions OFF)
-[ ] Uploaded 09_Pants (skin weights ON, joint positions OFF)
-[ ] Uploaded 10_Bracer_Left (skin weights ON, joint positions OFF)
-[ ] Uploaded 11_Bracer_Right (skin weights ON, joint positions OFF)
-[ ] Uploaded 12_Anklet_Left (skin weights ON, joint positions OFF)
-[ ] Uploaded 13_Anklet_Right (skin weights ON, joint positions OFF)
-[ ] Uploaded 14_Sword (skin weights ON, joint positions OFF)
+[ ] Uploaded 07_Loincloth (skin weights ON, joint positions OFF)
+[ ] Uploaded 08_Bracer_Left (skin weights ON, joint positions OFF)
+[ ] Uploaded 09_Bracer_Right (skin weights ON, joint positions OFF)
+[ ] Uploaded 10_Anklet_Left (skin weights ON, joint positions OFF)
+[ ] Uploaded 11_Anklet_Right (skin weights ON, joint positions OFF)
+[ ] Uploaded 12_Sword (skin weights ON, joint positions OFF)
 [ ] New Skin (skin_head/upper/lower) worn
 [ ] New Shape (slider recipe) worn
 [ ] All 13 items Added

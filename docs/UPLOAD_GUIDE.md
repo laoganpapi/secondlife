@@ -2,7 +2,7 @@
 
 Everything you upload lives in `output/dae` (meshes) and `output/textures`
 (images). Use the **Firestorm** or official SL viewer. Total cost estimate:
-~L$11–16 per mesh × 14 + L$10 per texture × ~18 ≈ **L$350–450**.
+~L$11–16 per mesh × 11 + L$10 per texture × 14 ≈ **L$260–320**.
 
 ## 1. Upload the textures first
 
@@ -13,10 +13,8 @@ Everything you upload lives in `output/dae` (meshes) and `output/textures`
 | `skin_head.png`, `skin_upper.png`, `skin_lower.png` | skin (system skin for BoM, or applied directly to the body) |
 | `eyes.png` | eye mesh |
 | `lashes.png` | eyelashes (alpha) |
-| `hair.png`, `gold.png`, `gem.png` | hair, all gold jewelry, gems |
-| `robe_upper.png`, `robe_lower.png` (+`robe_normal.png`) | robe |
-| `pants.png` (+`pants_normal.png`) | pants |
-| `sash.png` (+`sash_normal.png`) | sash |
+| `hair.png`, `gold.png`, `gem.png` | hair cards (alpha-cutout strand atlas), all gold jewelry, gems |
+| `loincloth.png` (+`loincloth_normal.png`) | loincloth |
 | `bracer.png` | both bracers |
 | `legwrap.png` | both anklets/leg wraps |
 | `sword_gold.png`, `sheath.png` | sword |
@@ -29,8 +27,13 @@ Tip: check "Use lossless compression" only for the small gold/gem textures.
    textures to `skin_head` / `skin_upper` / `skin_lower`.
 2. Make a **New Shape** — this is your Ganondorf shape. Suggested sliders:
    - Height ~90–100 (≈2.2–2.4 m), Body Thickness 60–70, Torso Muscles 75+,
-     Leg Muscles 70, Shoulders 80+, Hand Size 60, Head Size 45–50 (small
-     head reads imposing), Neck Thickness 70.
+     Leg Muscles 70, **Leg Length 70–85**, Shoulders 80+, Hand Size 60,
+     Head Size 45–50 (small head reads imposing), Neck Thickness 70.
+   - Leg Length is the correct way to make the legs read longer: the mesh
+     uses standard (non-overridden) Bento joints, so it follows this
+     slider's joint offsets exactly. Stretching the mesh geometry itself
+     instead would desync the knee crease from the actual knee bone and
+     look wrong in any bend/sit animation — deliberately not done here.
    - Face is mostly baked into the mesh; sliders still work — tweak Jaw
      Angle / Chin Depth / Brow to taste.
 3. Wear skin + shape (+ any system alpha layers later for clothing).
@@ -58,9 +61,7 @@ Items (all rigged unless noted):
 | `ganondorf_circlet.dae` | Skull |
 | `ganondorf_earrings.dae` | Skull |
 | `ganondorf_necklace.dae` | Chest |
-| `ganondorf_robe.dae` | Spine |
-| `ganondorf_sash.dae` | Pelvis |
-| `ganondorf_pants.dae` | Pelvis |
+| `ganondorf_loincloth.dae` | Pelvis |
 | `ganondorf_bracer_left/right.dae` | Forearms |
 | `ganondorf_anklet_left/right.dae` | Lower legs |
 | `ganondorf_sword.dae` (static, unrigged) | **Left Hip**, then position manually |
@@ -84,18 +85,19 @@ Rez or wear each item, `Edit` → *Select Face*:
 
 **Everything else** — apply the matching texture per face; gold faces get
 `gold.png` (set Shininess high or add a specular map), gems get `gem.png`
-with a little Glow (0.05). Robe/pants/sash: apply the matching
-`*_normal.png` in the Bumpiness slot for fabric depth. Hair: `hair.png`
-on hair faces, `gold.png` on the tie; set Alpha mode **Alpha masking**
-(cutoff ~64) if you see sorting glitches.
+with a little Glow (0.05). Loincloth: apply `loincloth_normal.png` in the
+Bumpiness slot for leather depth. Hair (the whole mane is one face): apply
+`hair.png` and set Alpha mode to **Alpha masking** (cutoff ~50) — this is
+required, not optional, since the hair is built from overlapping cards
+whose strand definition comes entirely from this texture's alpha cutout;
+Alpha blending will show visible sorting artifacts between cards.
 
 ## 5. Hiding the body under clothes
 
-The body is BoM — wear a standard **alpha wearable** that hides what the
-robe/pants cover (Inventory → New Clothes → New Alpha; paint or use any
-full-body alpha HUD). Because the garments were cut from this exact body
-with identical weights, clipping is minimal even without alphas in most
-animations.
+The body is BoM, and the loincloth only covers the hips — wear a standard
+**alpha wearable** if you want the covered strip hidden under the system
+skin too (Inventory → New Clothes → New Alpha). Not required: BoM already
+shows your skin correctly everywhere the mesh doesn't cover.
 
 ## 6. Animation notes
 
@@ -104,8 +106,9 @@ animations.
 - Face: jaw, lips, brows, lids, cheeks, ears are weighted — Bento facial
   animation HUDs and most head appearance sliders respond.
 - Eyes follow your look-at target automatically (rigged to eye bones).
-- The topknot/mane is rigged to the head; sideburn tips carry a little
-  neck weight for natural motion.
+- The mane is graded mHead → mNeck → mChest by height, so the crown
+  follows the head and the long back cascade follows head+neck motion
+  naturally.
 
 ## 7. Troubleshooting
 
